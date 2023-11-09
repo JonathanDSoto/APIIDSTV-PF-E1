@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client';
 import Example from './components/Example';
+import Login from './pages/login';
 
 
 export default function App() {
@@ -8,7 +9,8 @@ export default function App() {
   return (
     <>
       
-      <div className='p-20 bg-slate-400'></div>
+      <Login/>
+      
     </>
   );
 }
