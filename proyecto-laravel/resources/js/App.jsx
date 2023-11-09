@@ -8,7 +8,7 @@ export default function App() {
   return (
     <>
       
-      <Example/>
+      <div className='p-20 bg-slate-400'></div>
     </>
   );
 }
