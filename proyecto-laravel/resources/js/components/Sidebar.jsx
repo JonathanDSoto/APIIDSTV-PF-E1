@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 function Sidebar() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const Menus = [
         { title: "Inicio" },
         { title: "Pedidos" },
@@ -46,9 +46,7 @@ function Sidebar() {
                         <a
                             key={index}
                             className={`flex rounded-md p-2 cursor-pointer hover:bg-slate-600 text-gray-200 text-md items-center gap-x-4 
-                                ${Menu.gap ? "mt-9" : "mt-2"} ${
-                                index === 0 && "bg-slate-600"
-                            } 
+                                ${Menu.gap ? "mt-9" : "mt-2"} 
                             ${
                                 Menu.logout
                                     ? "hover:bg-red-700 hover:text-white"

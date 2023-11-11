@@ -5,16 +5,17 @@ import Home from './pages/Home';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Platillos from './components/Platillos';
+import Layout from './layouts/Layout';
 
 
 export default function App() {
 
   return (
-    <>
+    <Layout>
       
-      <Platillos/>
-      
-    </>
+    <Home/>
+    </Layout>
+   
   );
 }
 

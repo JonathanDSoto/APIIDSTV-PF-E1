@@ -1,22 +1,18 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
 
-export default function Navbar() {
+export default function Navbar({section}) {
   return (
-    <nav className="bg-black p-7">
-    <div className="container mx-auto">
-      <div className="flex items-center justify-between">
-        <div className="text-white font-bold text-lg"></div>
-        <div className="space-x-4">
-          <a href="#" className="text-white">Bienvenido</a>
-        
-          
-        </div>
+    <nav className='flex justify-around items-center mt-5'>
+      <div>
+        <h1 className='font-black text-4xl '>{section}</h1>
       </div>
-    </div>
-    <Sidebar/>
-  </nav>
-);
+      
+        <button className="rounded-md hover:bg-blue-700 bg-blue-500 text-white py-1 px-3" type="submit">
+          Agregar Platillo
+        </button>
+      
+    </nav>
+  );
 };
-   
- 
+
