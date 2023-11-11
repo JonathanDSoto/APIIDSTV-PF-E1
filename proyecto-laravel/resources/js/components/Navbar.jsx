@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
 
-export default function Navbar({section}) {
+export default function Navbar({section, addBtn}) {
   return (
     <nav className='flex justify-around items-center mt-5'>
       <div>
@@ -9,7 +9,7 @@ export default function Navbar({section}) {
       </div>
       
         <button className="rounded-md hover:bg-blue-700 bg-blue-500 text-white py-1 px-3" type="submit">
-          Agregar Platillo
+         {addBtn}
         </button>
       
     </nav>

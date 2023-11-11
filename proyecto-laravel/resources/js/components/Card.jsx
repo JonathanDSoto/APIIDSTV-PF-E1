@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Platillos({name, comidas}) {
+export default function Card({name, comidas, description}) {
   return (
     <>
     
@@ -15,7 +15,7 @@ export default function Platillos({name, comidas}) {
           <div className="text-xs text-blue-700 font-medium">Platillos</div>
           <h2 className="text-lg font-medium">{name}</h2>
           <div className="flex items-center">
-            <a className="mr-1 text-blue-500">Ver ingredientes</a>
+            <a className="mr-1 text-blue-500">{description}</a>
             {/* Agrega aquí la lista de ingredientes */}
           </div>
           <div className="flex space-x-3 text-sm font-medium mt-2">
