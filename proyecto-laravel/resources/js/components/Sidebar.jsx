@@ -6,7 +6,6 @@ function Sidebar() {
     const Menus = [
         { title: "Inicio" },
         { title: "Pedidos" },
-        { title: "Reservaciones" },
         { title: "Platillos" },
         { title: "Inventario" },
         { title: "", gap: true },

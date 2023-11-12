@@ -4,14 +4,21 @@ import Login from './pages/login';
 import Layout from './layouts/Layout';
 import Platillos from './pages/Platillos';
 import Ordenes from './pages/Ordenes';
+import Formulario from './components/Formulario';
+import Crear from './pages/Crear';
+
 
 
 export default function App() {
 
   return (
+
     <Layout>
       
-    <Ordenes/>
+      
+      <Crear/>
+      
+    
     </Layout>
    
   );
