@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Card({ name, comidas, description, option }) {
+export default function Card({ name, comidas, description, option, price }) {
   let descriptionColor;
 
   switch (description) {
@@ -31,6 +31,10 @@ export default function Card({ name, comidas, description, option }) {
           <div className="lg:flex items-center">
             <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{description}</button>
           </div>
+          <div className="lg:flex items-center">
+            <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{price}</button>
+          </div>
+
           <div className="flex space-x-3 text-sm font-medium mt-2">
             <button className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3" type="submit">
               Editar

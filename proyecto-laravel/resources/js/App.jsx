@@ -7,22 +7,26 @@ import Ordenes from './pages/Ordenes';
 import Formulario from './components/Formulario';
 import Crear from './pages/Crear';
 import Inventario from './pages/Inventario';
+import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 
 export default function App() {
 
   return (
-    <div className=" bg-cover bg-no-repeat bg-center bg-[url('/public/Example2.jpg')]" >
+    <div className="loginwrapper bg-cover bg-no-repeat bg-center bg-[url('/public/Example2.jpg')]" >
+    <BrowserRouter>
+    <Routes>
 
-    <Layout>
-      
-      
-      <Inventario/>
-      
+      <Route path="/" element={<Login/>}/>
+      <Route path="/platillos" element={<Platillos/>}/>
+      <Route path="/ordenes" element={<Ordenes/>}/>
+      <Route path="/inventario" element={<Inventario/>}/>
+
+    </Routes>
     
-    </Layout>
-   </div>
+    </BrowserRouter>
+    </div>
   );
 }
 

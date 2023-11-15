@@ -3,8 +3,9 @@ import LoginForm from '../components/LoginForm'
 
 export default function Login() {
     return (
+        
         <div>
-            <div className="loginwrapper bg-cover bg-no-repeat bg-center bg-[url('/public/Example.jpg')]" >
+           
                 <div className="lg-inner-column">
                     <div className="left-columns lg:w-1/2 lg:block hidden">
                         <div className="logo-box-3">
@@ -31,5 +32,5 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-        </div>
+       
 )}

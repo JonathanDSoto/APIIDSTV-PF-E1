@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function LoginForm() {
   return (
@@ -19,7 +20,7 @@ function LoginForm() {
 
               
             </div>
-            <button className="btn btn-dark block w-full text-center">Iniciar Sesión</button>
+            <NavLink to="/platillos" className="btn btn-dark block w-full text-center">Iniciar Sesión</NavLink>
           </form>
     </div>
   )

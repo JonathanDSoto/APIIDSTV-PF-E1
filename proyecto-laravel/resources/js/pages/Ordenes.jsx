@@ -2,8 +2,10 @@ import React from 'react'
 import Sidebar from '../components/Sidebar'
 import Card from '../components/Card'
 import Navbar from '../components/Navbar'
+import Layout from '../layouts/Layout';
 export default function Ordenes() {
     return (
+        <Layout>
         <div className='overflow-scroll'>
             
             <Navbar section="Ordenes" addBtn="Agregar Orden" />
@@ -24,5 +26,6 @@ export default function Ordenes() {
             </main>
 
         </div>
+        </Layout>
     )
 }
