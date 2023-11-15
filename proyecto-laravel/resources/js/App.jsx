@@ -6,21 +6,23 @@ import Platillos from './pages/Platillos';
 import Ordenes from './pages/Ordenes';
 import Formulario from './components/Formulario';
 import Crear from './pages/Crear';
+import Inventario from './pages/Inventario';
 
 
 
 export default function App() {
 
   return (
+    <div className=" bg-cover bg-no-repeat bg-center bg-[url('/public/Example2.jpg')]" >
 
     <Layout>
       
       
-      <Crear/>
+      <Inventario/>
       
     
     </Layout>
-   
+   </div>
   );
 }
 

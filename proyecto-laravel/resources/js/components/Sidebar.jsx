@@ -8,6 +8,7 @@ function Sidebar() {
         { title: "Pedidos" },
         { title: "Platillos" },
         { title: "Inventario" },
+        { title: "Configuración" },
         { title: "", gap: true },
         { title: 'Cerrar Sesión', logout: true, path: '/Login' },
     ];
@@ -42,6 +43,7 @@ function Sidebar() {
                 </div>
                 <ul className="pt-6">
                     {Menus.map((Menu, index) => (
+                    
                         <a
                             key={index}
                             className={`flex rounded-md p-2 cursor-pointer hover:bg-slate-600 text-gray-200 text-md items-center gap-x-4 
@@ -55,6 +57,7 @@ function Sidebar() {
                         >
                             <span className={`${!open && "hidden"}`}>
                      {Menu.title}
+                     
                      </span>
                         </a>
                     ))}

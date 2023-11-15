@@ -11,18 +11,14 @@ export default function Platillos() {
         className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center gap-4'
         
       >
-        <Card name="California" comidas={"california.jpg"} description="Ver Ingredientes" />
-        <Card name="Mar y Tierra" comidas={"Sushi1.png"} description="Ver Ingredientes" />
-        <Card name="Gohan" comidas={"gohan.png"} description="Ver Ingredientes" />
-        <Card name="Milenia Roll" comidas={"milenia.jpeg"} description="Ver Ingredientes" />
-        <Card name="Queso Roll" comidas={"queso.jpg"} description="Ver Ingredientes" />
-        <Card name="Gohan" comidas={"gohan.png"} description="Ver Ingredientes" />
-        <Card name="California" comidas={"california.jpg"} description="Ver Ingredientes" />
-        <Card name="Mar y Tierra" comidas={"Sushi1.png"} description="Ver Ingredientes" />
-        <Card name="Gohan" comidas={"gohan.png"} description="Ver Ingredientes" />
-        <Card name="Milenia Roll" comidas={"milenia.jpeg"} description="Ver Ingredientes" />
-        <Card name="Queso Roll" comidas={"queso.jpg"} description="Ver Ingredientes" />
-        <Card name="Gohan" comidas={"gohan.png"} description="Ver Ingredientes" />
+        <Card name="California" comidas={"california.jpg"} description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Mar y Tierra" comidas={"Sushi1.png"} description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Gohan" comidas={"gohan.png"} description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Milenia Roll" comidas={"milenia.jpeg"} description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Queso Roll" comidas={"queso.jpg"} description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Gohan" comidas={"gohan.png"} description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="California" comidas={"california.jpg"} description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        
       </main>
     </div>
   );
