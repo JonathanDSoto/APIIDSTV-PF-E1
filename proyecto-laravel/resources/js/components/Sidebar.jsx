@@ -9,8 +9,7 @@ function Sidebar() {
         { icon: "🗒️", title: "Pedidos", ruta: '/ordenes' },
         { icon: "🍽️", title: "Platillos", ruta: '/platillos' },
         { icon: "🍘", title: "Inventario", ruta: '/inventario' },
-        { icon: "👤", title: "Clientes" },
-        { icon: "", title: "Mi cuenta" },
+        { icon: "👤", title: "Clientes0", ruta: '/clientes' },
         { icon: "📤", title: 'Salir', ruta: '/' },
     ];
 
@@ -18,7 +17,7 @@ function Sidebar() {
         <div className="flex">
             <div
                 className={` ${open ? "w-60" : "w-[4.8rem]"
-                    } bg-black h-screen p-5 pt-8 top-0 fixed duration-300`}
+                    } bg-slate-950 h-screen p-5 pt-8 top-0 fixed duration-300`}
             >
                 <a 
                     src="/circulo.png"

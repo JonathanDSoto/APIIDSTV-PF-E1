@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
             <div>
                 <Sidebar />
             </div>
-            <main>{children}</main>
+            <main className="bg-slate-900">{children}</main>
         </>
     );
 };
