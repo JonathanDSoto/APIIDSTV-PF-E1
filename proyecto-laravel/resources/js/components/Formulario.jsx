@@ -19,7 +19,7 @@ export default function Formulario({elements,elements2,elements3,elements4,prese
               type="texto"
               name="email"
               className="form-control py-2 text-center lg:min-w-[400px]"
-              placeholder="Ingresar"
+              placeholder="Ingresar" 
             />
           </div>
         </div>

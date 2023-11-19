@@ -9,7 +9,7 @@ export default function Platillos() {
   return (
     <Layout>
     <div className='overflow-scroll'>
-      <Navbar section="Platillos" addBtn="Agregar Platillo" />
+    <Navbar section="Modulo de platillos" addBtn="Agregar" />
       <main
         className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center gap-4 -mb-32'
         

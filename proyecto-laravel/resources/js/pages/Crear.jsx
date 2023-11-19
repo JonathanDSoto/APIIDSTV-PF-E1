@@ -8,7 +8,7 @@ export default function Crear() {
   return (
     <Layout>
         <div className='overflow-scroll'>
-        <Navbar section="Agregar Platillo" />
+        <h1 className='text-white font-bold text-4xl text-center mt-10'>Agregar Información</h1>
       <div className='flex justify-center items-center h-screen'>
         <div className='w-full max-w-xs'>
          

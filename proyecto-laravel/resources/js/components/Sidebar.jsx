@@ -6,10 +6,11 @@ function Sidebar() {
     const [open, setOpen] = useState(false);
     const Menus = [
         { icon: "🏠", title: "Inicio", ruta: '/platillos' },
-        { icon: "🗒️", title: "Pedidos", ruta: '/ordenes' },
+        { icon: "🗒️", title: "Ordenes", ruta: '/ordenes' },
         { icon: "🍽️", title: "Platillos", ruta: '/platillos' },
-        { icon: "🍘", title: "Inventario", ruta: '/inventario' },
+        { icon: "🥕", title: "Inventario", ruta: '/inventario' },
         { icon: "👤", title: "Clientes0", ruta: '/clientes' },
+        {},
         { icon: "📤", title: 'Salir', ruta: '/' },
     ];
 

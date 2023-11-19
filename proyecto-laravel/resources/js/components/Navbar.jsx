@@ -9,7 +9,7 @@ export default function Navbar({section, addBtn}) {
         <h1 className='text-white font-bold text-4xl'>{section}</h1>
       </div>
       
-      <NavLink to="/crear" className="btn bg-lime-500 block text-center">Agregar</NavLink>
+      <NavLink to="/crear" className="btn bg-lime-500 block text-center">{addBtn}</NavLink>
       
     </nav>
   );

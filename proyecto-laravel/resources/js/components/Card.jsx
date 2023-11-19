@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 
-export default function Card({ name, comidas, description, option, price, conxt, conxt2 }) {
-  let descriptionColor;
+export default function Card({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
+  let descriptionColor, descriptionColor2;
 
   switch (description) {
     case 'Agotado':
@@ -11,12 +11,52 @@ export default function Card({ name, comidas, description, option, price, conxt,
     case 'Cantidad baja':
       descriptionColor = 'text-yellow-500';
       break;
+      case 'Entregada':
+        descriptionColor = 'text-green-700';
+        break;
+
     case 'Disponible':
       descriptionColor = 'text-green-700';
       break;
     default:
       descriptionColor = 'text-black';
   }
+
+
+  switch (checkpoint) {
+    case 'Cancelada':
+      descriptionColor2 = 'text-red-700';
+      break;
+    case 'Pendiente':
+      descriptionColor2 = 'text-yellow-500';
+      break;
+      case 'Entregada':
+        descriptionColor2 = 'text-green-700';
+        break;
+  }
+
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleAlert = () => {
+    setShowAlert(true);
+  };
+
+  useEffect(() => {
+    let timeout;
+    if (showAlert) {
+      timeout = setTimeout(() => {
+        setShowAlert(false);
+      }, 2000); // Cambia este valor (en milisegundos) para ajustar la duración de la alerta
+    }
+
+
+  return () => {
+    clearTimeout(timeout);
+  };
+}, [showAlert]);
+
+ 
+
   return (
     <div className="bg-white shadow-md rounded-2xl p-4 mb-2 mx-auto sm:w-2/3 md:w-1/2 flex flex-col">
       <div className="flex items-center">
@@ -33,6 +73,15 @@ export default function Card({ name, comidas, description, option, price, conxt,
             <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{description}</button>
           </div>
           <div className="lg:flex items-center">
+            <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{description2}</button>
+          </div>
+
+          <div className="lg:flex items-center">
+            <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor2}`}>{checkpoint}</button>
+          </div>
+
+
+          <div className="lg:flex items-center">
             <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{price}</button>
           </div>
           <div className="text-xs text-blue-700 font-medium">{conxt}</div>
@@ -44,8 +93,29 @@ export default function Card({ name, comidas, description, option, price, conxt,
             </NavLink>
             <button className="rounded-md border hover:bg-red-300 hover:text-white text-red-500 border-red-500 py-1 px-3" type="submit">
               Eliminar
-            </button>
+            </button> 
+
+            <button
+          className="rounded-md border hover:bg-blue-300 hover:text-white text-blue-500 border-purple-500 py-1 px-3"
+          type="button"
+          onClick={handleAlert}
+        >
+          {boton}
+        </button>
+
+            
+
+           
           </div>
+
+          {showAlert && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 -mt-10">
+          <div className="bg-orange-300 border border-gray-200 shadow-md rounded-lg p-6">
+            <p>Esta orden ya esta marcada como completada</p>
+          </div>
+        </div>
+      )}
+
         </div>
       </div>
      

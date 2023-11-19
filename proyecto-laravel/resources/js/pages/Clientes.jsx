@@ -1,22 +1,29 @@
 import React from 'react'
-import Formulario from '../components/Formulario'
+import Sidebar from '../components/Sidebar'
 import Card from '../components/Card'
 import Navbar from '../components/Navbar'
-import Layout from '../layouts/Layout'
-
-export default function Clientes() {
-  return (
-    <Layout>
+import Layout from '../layouts/Layout';
+export default function Ordenes() {
+    return (
+        <Layout>
         <div className='overflow-scroll'>
-        <Navbar section="Modulo de clientes" />
-      <div className='flex justify-center items-center h-screen'>
-        <div className='w-full max-w-xs'>
-         
-         
-          
+            
+            <Navbar section="Modulo de clientes" addBtn="Agregar" />
+            <main className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center gap-4 -mb-32'>
+ 
+
+
+                <Card name="Orden: 2 California Roll, 3 Tempura Roll" comidas={"rest.png"} checkpoint="Entregada" description=" Mesa 7" description2="Fehca: 28/11/2023" boton="Marcar Como completa"/>
+                <Card name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} checkpoint="Entregada" description="Para llevar: Recogen en Restaurante" description2="Fehca: 28/11/2023" boton="Marcar Como completa"/>
+                <Card name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} checkpoint="Cancelada" description="Para llevar: Domicilio 5 de mayo/Calle1/Calle2" description2="Fehca: 28/11/2023"/>
+                <Card name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} checkpoint="Pendiente" description="Mesa 12" description2="Fehca: 28/11/2023" boton="Marcar Como completa"/>
+                <Card name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} checkpoint="Pendiente" description="Para llevar: Recogen en Restaurante" description2="Fehca: 28/11/2023" boton="Marcar Como completa"/>
+                <Card name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} checkpoint="Cancelada" description="Para llevar: Recogen en Restaurante" description2="Fehca: 28/11/2023" boton="Marcar Como completa"/>
+                
+
+            </main>
+
         </div>
-      </div>
-      </div>
-    </Layout>
-  )
+        </Layout>
+    )
 }

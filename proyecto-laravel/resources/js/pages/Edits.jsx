@@ -8,7 +8,7 @@ export default function Edits() {
   return (
     <Layout>
         <div className='overflow-scroll'>
-        <Navbar section="Editar Platillo" />
+        <h1 className='text-white font-bold text-4xl text-center mt-10'>Editar Información</h1>
       <div className='flex justify-center items-center h-screen'>
         <div className='w-full max-w-xs'>
          
