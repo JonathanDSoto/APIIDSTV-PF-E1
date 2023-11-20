@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 
-export default function Card({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
+export default function CardHome({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
   let descriptionColor, descriptionColor2;
 
   switch (description) {
@@ -58,13 +58,12 @@ export default function Card({ name, comidas, description,description2, option, 
  
 
   return (
-    
-    <div className="bg-white shadow-md rounded-2xl p-4 mb-2 mx-auto sm:w-2/3 md:w-1/2 flex flex-col">
+    <div className="bg-slate-500 shadow-md rounded-2xl p-2 mb-20 mx-auto sm:w-2/3 md:w-1/2 flex flex-col">
       <div className="flex items-center">
         <img
           src={comidas}
           alt="Sushi de Pollo"
-          className="w-24 h-24 object-cover rounded-2xl mb-6 mr-12"
+          className="w-32 object-cover rounded-2xl mb-2 mr-12"
         />
         <div className="flex-grow">
           <div className="text-xs text-blue-700 font-medium">{option}</div>
@@ -85,16 +84,11 @@ export default function Card({ name, comidas, description,description2, option, 
           <div className="lg:flex items-center">
             <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{price}</button>
           </div>
-          <div className="text-xs text-blue-700 font-medium">{conxt}</div>
+          <div className="text-xs text-lime-500 font-medium">{conxt}</div>
           <div className="text-xs text-black font-medium">{conxt2}</div>
           <div className="flex space-x-3 text-sm font-medium mt-2">
             
-            <NavLink to='/edits' className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3" >
-              Editar
-            </NavLink>
-            <button className="rounded-md border hover:bg-red-300 hover:text-white text-red-500 border-red-500 py-1 px-3" type="submit">
-              Eliminar
-            </button> 
+            
 
             <button
           className="rounded-md border hover:bg-blue-300 hover:text-white text-blue-500 border-purple-500 py-1 px-3"

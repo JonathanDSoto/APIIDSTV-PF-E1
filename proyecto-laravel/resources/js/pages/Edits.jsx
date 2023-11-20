@@ -9,6 +9,7 @@ export default function Edits() {
     <Layout>
         <div className='overflow-scroll'>
         <h1 className='text-white font-bold text-4xl text-center mt-10'>Editar Información</h1>
+        <img src="rest.png" alt="Logo restaurante" className='absolute top-0 right-0 mt-4 mr-20 w-28' />
       <div className='flex justify-center items-center h-screen'>
         <div className='w-full max-w-xs'>
          

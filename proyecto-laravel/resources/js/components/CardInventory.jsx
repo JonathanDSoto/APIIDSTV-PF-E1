@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 
-export default function Card({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
+export default function CardInventory({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
   let descriptionColor, descriptionColor2;
 
   switch (description) {
@@ -89,7 +89,7 @@ export default function Card({ name, comidas, description,description2, option, 
           <div className="text-xs text-black font-medium">{conxt2}</div>
           <div className="flex space-x-3 text-sm font-medium mt-2">
             
-            <NavLink to='/edits' className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3" >
+            <NavLink to='/editinventory' className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3" >
               Editar
             </NavLink>
             <button className="rounded-md border hover:bg-red-300 hover:text-white text-red-500 border-red-500 py-1 px-3" type="submit">
@@ -112,7 +112,7 @@ export default function Card({ name, comidas, description,description2, option, 
           {showAlert && (
         <div className="fixed inset-0 flex items-center justify-center z-50 -mt-10">
           <div className="bg-orange-300 border border-gray-200 shadow-md rounded-lg p-6">
-            <p>Esta orden ya esta marcada como Entregada</p>
+            <p>Esta orden ya esta marcada como completada</p>
           </div>
         </div>
       )}

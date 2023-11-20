@@ -1,18 +1,18 @@
 import React from 'react'
-import Formulario from '../components/Formulario'
+import Form2 from '../components/Form2'
 import Card from '../components/Card'
 import Navbar from '../components/Navbar'
 import Layout from '../layouts/Layout'
 
-export default function Crear() {
+export default function Edits2() {
   return (
     <Layout>
         <div className='overflow-scroll'>
-        <h1 className='text-white font-bold text-4xl text-center mt-10'>Agregar Información</h1>
+        <h1 className='text-white font-bold text-4xl text-center mt-10'>Editar Orden </h1>
       <div className='flex justify-center items-center h-screen'>
         <div className='w-full max-w-xs'>
-        <img src="rest.png" alt="Logo restaurante" className='absolute top-0 right-0 mt-4 mr-20 w-28' />
-          <Formulario present="Nombre de platillo" elements="ingredientes" elements2="Precio"/>
+         
+          <Form2 present="Ingresa los platillos " elements="No. de mesa" elements2="Domicilio"/>
           
         </div>
       </div>
