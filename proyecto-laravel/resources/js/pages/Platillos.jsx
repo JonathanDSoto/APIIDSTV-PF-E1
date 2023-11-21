@@ -13,7 +13,7 @@ export default function Platillos() {
       <main
         className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center gap-4 -mb-32'
         
-      > <img src="rest.png" alt="Logo restaurante" className='absolute top-0 right-0 mt-4 mr-20 w-28' />
+      >
         <Card name="California" comidas={"california.jpg"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
         <Card name="Mar y Tierra" comidas={"Sushi1.png"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
         <Card name="Gohan" comidas={"gohan.png"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
