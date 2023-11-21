@@ -28,20 +28,13 @@ export default function Formulario({ elements, elements2, elements3, elements4, 
                     <label className="text-white block capitalize form-label font-bold">Tipo de orden</label>
                     <div className="relative flex items-center p-5">
                         <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                name="checkboxName"
-                                className="form-checkbox h-5 w-5 text-gray-600"
-                            />
-                            <span className="ml-2 mr-4 text-white">En restaurante</span>
-                        </div>
                         <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                name="checkboxName"
-                                className="form-checkbox h-5 w-5 text-gray-600"
-                            />
-                            <span className="ml-2 text-white">Servicio a domicilio</span>
+                            <select name="select">
+
+                                <option value="value2" selected>Restaurante</option>
+                                <option value="value3">Domicilio</option>
+                            </select>
+                        </div>
                         </div>
                     </div>
                 </div>

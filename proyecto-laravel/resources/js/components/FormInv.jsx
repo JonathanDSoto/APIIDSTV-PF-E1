@@ -28,21 +28,14 @@ export default function FormInv({ elements, elements2, elements3, elements4, pre
                     <label className="text-white block capitalize form-label font-bold">Registro de producto</label>
                     <div className="relative flex items-center p-5">
                         <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                name="checkboxName2"
-                                className="form-checkbox h-5 w-5 text-gray-600"
-                            />
-                            <span className="ml-2 mr-4 text-white">Kilogramos</span>
+                            <select name="select">
+
+                                <option value="value2" selected>Kilogramos</option>
+                                <option value="value3">Litros</option>
+                            </select>
                         </div>
-                        <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                name="checkboxName2"
-                                className="form-checkbox h-5 w-5 text-gray-600"
-                            />
-                            <span className="ml-2 text-white">Litros</span>
-                        </div>
+
+
                     </div>
                 </div>
                 <div className="fromGroup">
