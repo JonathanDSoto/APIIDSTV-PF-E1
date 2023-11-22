@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { NavLink } from 'react-router-dom'
 
 export default function CardInventory({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
@@ -92,10 +93,60 @@ export default function CardInventory({ name, comidas, description,description2,
             <NavLink to='/editinventory' className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3" >
               Editar
             </NavLink>
-            <button className="rounded-md border hover:bg-red-300 hover:text-white text-red-500 border-red-500 py-1 px-3" type="submit">
-              Eliminar
-            </button> 
+            <button
+  className="rounded-md border hover:bg-red-300 hover:text-white text-red-500 border-red-500 py-1 px-3"
+  type="button"
+  onClick={() => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
+      buttonsStyling: false
+    });
+    
 
+    const swalWithColorText = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success  text-black',
+        cancelButton: 'btn btn-danger text-black',
+        content: 'text-blue-500', 
+        title: 'text-black', 
+        footer: 'text-red-500'
+      },
+      buttonsStyling: false
+    });
+    
+    swalWithColorText.fire({
+      title: '¿Estás seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminarlo',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: '¡Eliminado!',
+            text: 'Este modulo ha sido eliminado.',
+            icon: 'success'
+          });
+        
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: 'Cancelado',
+            text: 'Modulo a salvo',
+            icon: 'error'
+          });
+          
+        }
+      });
+  }}
+>
+  Eliminar
+</button>
             <button
           className="rounded-md border hover:bg-blue-300 hover:text-white text-blue-500 border-purple-500 py-1 px-3"
           type="button"

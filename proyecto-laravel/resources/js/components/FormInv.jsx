@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import { NavLink } from 'react-router-dom'
 
 const imageUrl = '';
@@ -12,8 +13,8 @@ export default function FormInv({ elements, elements2, elements3, elements4, pre
     return (
         <div className=" lg: flex justify-center items-center h-screen md: -mt-28 ">
             <form className="flex flex-col justify-center items-center gap-2  max-w-lg text-center" action="index.html">
-                <div className="fromGroup">
-                    <label className="text-white block capitalize form-label">{present}</label>
+                <div className="fromGroup p-5">
+                    <label className="text-white block capitalize form-label  font-bold" style={{ fontSize: '1.5em' }}>{present}</label>
                     <div className="relative">
                         <input
                             type="texto"
@@ -24,8 +25,8 @@ export default function FormInv({ elements, elements2, elements3, elements4, pre
                     </div>
                 </div>
 
-                <div className="fromGroup p-5">
-                    <label className="text-white block capitalize form-label font-bold">Registro de producto</label>
+                <div className="fromGroup p-5 flex flex-col items-center">
+                    <label className="text-white block capitalize form-label font-bold "style={{ fontSize: '1.5em' }}>Registro de producto</label>
                     <div className="relative flex items-center p-5">
                         <div className="flex items-center">
                             <select name="select">
@@ -38,8 +39,8 @@ export default function FormInv({ elements, elements2, elements3, elements4, pre
 
                     </div>
                 </div>
-                <div className="fromGroup">
-                    <label className="text-white block capitalize form-label font-bold ">{elements}</label>
+                <div className="fromGroup p-5">
+                    <label className="text-white block capitalize form-label font-bold " style={{ fontSize: '1.5em' }}>{elements}</label>
 
                     <div className="relative">
                         <input
@@ -51,8 +52,8 @@ export default function FormInv({ elements, elements2, elements3, elements4, pre
                     </div>
                 </div>
 
-                <div className="fromGroup">
-                    <label className="text-white block capitalize form-label font-bold ">{elements2}</label>
+                <div className="fromGroup p-5">
+                    <label className="text-white block capitalize form-label font-bold " style={{ fontSize: '1.5em' }}>{elements2}</label>
 
                     <div className="relative">
                         <input
@@ -70,7 +71,7 @@ export default function FormInv({ elements, elements2, elements3, elements4, pre
 
                 <div className='flex gap-4 '>
 
-                    <NavLink to='/platillos' className="btn rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 ">Cancelar</NavLink>
+                    <NavLink to='/inventario' className="btn rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 ">Cancelar</NavLink>
                     <button className="btn rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3">Guardar</button>
                 </div>
 

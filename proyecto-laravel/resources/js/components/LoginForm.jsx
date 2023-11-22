@@ -20,7 +20,7 @@ function LoginForm() {
 
               
             </div>
-            <NavLink to="/platillos" className="btn btn-dark block w-full text-center">Iniciar Sesión</NavLink>
+            <NavLink to="/inicio" className="btn btn-dark block w-full text-center">Iniciar Sesión</NavLink>
           </form>
     </div>
   )

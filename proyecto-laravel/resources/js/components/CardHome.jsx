@@ -58,12 +58,13 @@ export default function CardHome({ name, comidas, description,description2, opti
  
 
   return (
-    <div className="bg-slate-500 shadow-md rounded-2xl p-2 mb-20 mx-auto sm:w-2/3 md:w-1/2 flex flex-col">
+    
+    <div className="bg-slate-500 shadow-md rounded-2xl p-2 mb-12 mx-auto sm:w-2/3 md:w-1/2 flex flex-col">
       <div className="flex items-center">
         <img
           src={comidas}
           alt="Sushi de Pollo"
-          className="w-32 object-cover rounded-2xl mb-2 mr-12"
+          className="w-32 justify-center mt-5 object-cover rounded-2xl mb-2 mr-12"
         />
         <div className="flex-grow">
           <div className="text-xs text-blue-700 font-medium">{option}</div>
