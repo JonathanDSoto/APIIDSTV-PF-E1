@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import { NavLink } from 'react-router-dom'
 
 const imageUrl = '';
@@ -70,7 +71,7 @@ export default function FormInv({ elements, elements2, elements3, elements4, pre
 
                 <div className='flex gap-4 '>
 
-                    <NavLink to='/platillos' className="btn rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 ">Cancelar</NavLink>
+                    <NavLink to='/inventario' className="btn rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 ">Cancelar</NavLink>
                     <button className="btn rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3">Guardar</button>
                 </div>
 

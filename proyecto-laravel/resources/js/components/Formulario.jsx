@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import Swal from 'sweetalert2';
+
 
 const imageUrl = '';
 
@@ -54,7 +56,7 @@ export default function Formulario({elements,elements2,elements3,elements4,prese
 
         <div>
           <img className="text-white mx-auto" src={"galery.png"} alt="Imagen" />
-          <button className='text-white' onClick={handleDownload}>Descargar Imagen</button>
+          <button className='text-white' onClick={handleDownload}>Agregar Imagen</button>
         </div>
 <div className='flex gap-4 '>
        
