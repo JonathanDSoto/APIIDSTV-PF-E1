@@ -33,10 +33,10 @@ class InventarioController extends Controller
     {
         try {
             $request->validate([
-                'nombre' => 'required|unique:inventarios',
+                'nombre' => 'required|unique:inventarios|string|max:50',
                 'cantidad' => 'required|numeric|min:1',
-                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento',
-                'unidad_medida' => 'required|in:Litros,Kilogramos,Unidades,Paquetes,Mililitros',
+                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento|string|max:100',
+                'unidad_medida' => 'required|in:Litros,Kilogramos|string|max:10',
             ]);
             $inventario = Inventario::create(request()->all());
             return ApiResponse::success("Producto creado exitosamente a Inventario", 201, $inventario);
@@ -66,10 +66,10 @@ class InventarioController extends Controller
         try {
             $inventario = Inventario::findOrFail($id);
             $request->validate([
-                'nombre' => ['required', Rule::unique('Inventarios')->ignore($inventario)],
+                'nombre' => ['required|string|max:50', Rule::unique('Inventarios')->ignore($inventario)],
                 'cantidad' => 'required|numeric|min:1',
-                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento',
-                'unidad_medida' => 'required|in:Litros,Kilogramos,Unidades,Paquetes',
+                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento|string|max:100',
+                'unidad_medida' => 'required|in:Litros,Kilogramos|string|max:10',
             ]);
             $inventario->update($request->all());
             return ApiResponse::success('Producto de Inventario actualizado exitosamente', 200, $inventario);
