@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->bigIncrements('id')->nullable(false)->unsigned();
-            $table->string('nombre', 50)->nullable(false)->unique();
+            $table->string('nombre', 50)->nullable(false);
             $table->integer('cantidad')->nullable(false);
             $table->string('tipo', 100)->nullable(false);
             $table->string('unidad_medida', 10);

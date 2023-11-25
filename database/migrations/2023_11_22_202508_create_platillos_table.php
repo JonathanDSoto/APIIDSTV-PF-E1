@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('platillos', function (Blueprint $table) {
             $table->bigIncrements('id')->nullable( false )->unsigned();
-            $table->string('nombre', 50)->nullable( false )->unique();
-            $table->integer('categoria')->nullable(false);
+            $table->string('nombre', 50)->nullable( false );
             $table->string('descripcion', 100)->nullable(false);
             $table->decimal('precio', 8, 2)->nullable(false);
+            $table->string('imagen', 100)->nullable(false);
             $table->unsignedBigInteger('id_inventario');
             $table->timestamps();
             

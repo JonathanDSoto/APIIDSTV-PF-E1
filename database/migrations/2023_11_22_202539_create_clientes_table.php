@@ -19,9 +19,13 @@ return new class extends Migration
             $table->string('password', 255)->nullable(false);
             $table->string('telefono', 10)->nullable(true)->unique();
             $table->unsignedBigInteger('id_orden');
+            $table->unsignedBigInteger('id_platillo');
             $table->timestamps();
 
             $table->foreign('id_orden')->references('id')->on('ordenes')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('id_platillo')->references('id')->on('platillos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

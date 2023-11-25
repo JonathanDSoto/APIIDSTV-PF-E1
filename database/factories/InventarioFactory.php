@@ -16,7 +16,6 @@ class InventarioFactory extends Factory
      */
     public function definition(): array
     {
-         // Inicializar tu array de inventario aquí
          $menuInventario = [
             ['nombre' => 'Coca Cola', 'tipo' => 'Bebida', 'unidad_medida' => 'Litros'],
             ['nombre' => 'Agua', 'tipo' => 'Bebida', 'unidad_medida' => 'Litros'],

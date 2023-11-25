@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('ordenes', function (Blueprint $table) {
             $table->bigIncrements('id')->nullable( false )->unsigned();
-            $table->integer('mesa')->nullable(false)->unique();
+            $table->integer('mesa')->nullable(false);
             $table->integer('cantidad')->nullable(false);
+            $table->enum('tipo_orden', ['domicilio', 'restaurante'])->nullable(false);
+            $table->string('direccion')->nullable(true);
             $table->decimal('total_precio',8,2)->nullable(false);
             $table->date('fecha')->nullable(false);
-            $table->unsignedBigInteger('id_platillo');
             $table->timestamps();
-
-            $table->foreign('id_platillo')->references('id')->on('platillos')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 
