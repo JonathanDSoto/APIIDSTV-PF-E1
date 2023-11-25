@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 function LoginForm() {
   return (
     <div>
-         <form className="space-y-4" action='index.html'>
+         <form className="space-y-4 " action='index.html'>
             <div className="fromGroup">
               <label className="block capitalize form-label">Correo electrónico</label>
               <div className="relative ">

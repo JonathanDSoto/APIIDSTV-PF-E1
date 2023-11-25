@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import AgregarModal from './ModalPlatillo'
 import { NavLink } from 'react-router-dom'
 
 export default function Card({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
@@ -56,11 +57,19 @@ export default function Card({ name, comidas, description,description2, option, 
   };
 }, [showAlert]);
 
- 
+const [agregarModalOpen, setAgregarModalOpen] = useState(false);
+
+const openAgregarModal = () => {
+  setAgregarModalOpen(true);
+};
+
+const closeAgregarModal = () => {
+  setAgregarModalOpen(false);
+};
 
   return (
     
-    <div className="bg-white shadow-md rounded-2xl p-4 mb-2 mx-auto sm:w-2/3 md:w-1/2 flex flex-col">
+    <div className="bg-white shadow-md rounded-2xl  mb-8 mx-12 p-4 flex flex-col max-w-md">
       <div className="flex items-center">
         <img
           src={comidas}
@@ -90,11 +99,14 @@ export default function Card({ name, comidas, description,description2, option, 
           <div className="text-xs text-black font-medium">{conxt2}</div>
           <div className="flex space-x-3 text-sm font-medium mt-2">
             
-            <NavLink to='/edits' className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3" >
+          <button
+              className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3 mr-2"
+              onClick={openAgregarModal}
+            >
               Editar
-            </NavLink>
+            </button>
             <button
-  className="rounded-md border hover:bg-red-300 hover:text-white text-red-500 border-red-500 py-1 px-3"
+  className="rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
   type="button"
   onClick={() => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -147,14 +159,7 @@ export default function Card({ name, comidas, description,description2, option, 
 >
   Eliminar
 </button>
-            <button
-          className="rounded-md border hover:bg-blue-300 hover:text-white text-blue-500 border-purple-500 py-1 px-3"
-          type="button"
-          onClick={handleAlert}
-        >
-          {boton}
-        </button>
-
+            
             
 
            
@@ -170,7 +175,7 @@ export default function Card({ name, comidas, description,description2, option, 
 
         </div>
       </div>
-     
+      <AgregarModal isOpen={agregarModalOpen} onClose={closeAgregarModal} />
     </div>
 
     

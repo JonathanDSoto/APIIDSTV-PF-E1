@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import AgregarModal from './ModalInv';
+import AgregarModal from './ModalClient';
 import { NavLink } from 'react-router-dom'
 
-export default function CardInventory({ name, comidas, description, description2, option, price, conxt, conxt2, conxt3, boton, checkpoint }) {
+export default function TableClients({ name, comidas, description, description2, option, price, conxt, conxt2, conxt3, conxt4, boton, checkpoint }) {
   let descriptionColor, descriptionColor2;
 
   switch (description) {
@@ -40,7 +40,13 @@ export default function CardInventory({ name, comidas, description, description2
   const [showAlert, setShowAlert] = useState(false);
 
   const handleAlert = () => {
-    setShowAlert(true);
+    // Utilizar SweetAlert2 para mostrar un mensaje
+    Swal.fire({
+      title: 'Este orden ya esta marcada',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 2000 
+    });
   };
 
   useEffect(() => {
@@ -48,7 +54,7 @@ export default function CardInventory({ name, comidas, description, description2
     if (showAlert) {
       timeout = setTimeout(() => {
         setShowAlert(false);
-      }, 2000); // Cambia este valor (en milisegundos) para ajustar la duración de la alerta
+      }, 2000); 
     }
 
 
@@ -66,16 +72,6 @@ export default function CardInventory({ name, comidas, description, description2
     // Lógica para eliminar
   };
 
-  const [agregarModalOpen, setAgregarModalOpen] = useState(false);
-
-  const openAgregarModal = () => {
-    setAgregarModalOpen(true);
-  };
-
-  const closeAgregarModal = () => {
-    setAgregarModalOpen(false);
-  };
-
 
 
 
@@ -84,7 +80,7 @@ export default function CardInventory({ name, comidas, description, description2
     if (showAlert) {
       timeout = setTimeout(() => {
         setShowAlert(false);
-      }, 2000); // Cambia este valor (en milisegundos) para ajustar la duración de la alerta
+      }, 2000); 
     }
 
 
@@ -92,6 +88,19 @@ export default function CardInventory({ name, comidas, description, description2
     clearTimeout(timeout);
   };
 }, [showAlert]);
+
+const [agregarModalOpen, setAgregarModalOpen] = useState(false);
+
+const openAgregarModal = () => {
+  setAgregarModalOpen(true);
+};
+
+const closeAgregarModal = () => {
+  setAgregarModalOpen(false);
+};
+
+
+
 
 
   return (
@@ -103,23 +112,27 @@ export default function CardInventory({ name, comidas, description, description2
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
           <th scope="col" className="px-6 py-3 text-center">
-            Producto
+            Cliente
           </th>
           <th scope="col" className="px-6 py-3 text-center">
-            Cantidad
-          </th>
-          <th scope="col" className="px-6 py-3 text-center">
-           Tipo
-          </th>
-          
-          <th scope="col" className="px-6 py-3 text-center">
-            Cantidad mínima
-          </th>
-          <th scope="col" className="px-6 py-3 text-center">
-            Estado
+            Orden
           </th>
 
-          
+          <th scope="col" className="px-6 py-3 text-center">
+            Numero
+          </th>
+          <th scope="col" className="px-6 py-3 text-center">
+            Fecha
+          </th>
+          <th scope="col" className="px-6 py-3 text-center">
+            Tipo de orden
+          </th>
+          <th scope="col" className="px-6 py-3 text-center">
+            Estado 
+          </th>
+
+
+
           <th scope="col" className="px-6 py-3 text-center">
             Acciones
           </th>
@@ -129,25 +142,41 @@ export default function CardInventory({ name, comidas, description, description2
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
           <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <div className="flex items-center">
-             
+            <img
+                  className="w-10 h-10 object-cover rounded-full mr-4"
+                  src="ft.jpg"
+                  alt="Cliente Avatar"
+                />
+
+
+
               {name}
             </div>
           </th>
           <td className="px-6 py-4">{conxt}</td>
           <td className="px-6 py-4">{conxt2}</td>
           <td className="px-6 py-4">{conxt3}</td>
+          <td className="px-6 py-4">{conxt4}</td>
           <td className="lg:flex items-center">
-            <button style={{ fontSize: '1.2rem' }} className={`mr-1 mt-4 ${descriptionColor}`}>
+            <button style={{ fontSize: '1.2rem' }} className={`mr-1 mt-6 ${descriptionColor}`}>
               {description}
             </button>
           </td>
           <td className="px-6 py-4">
-            <button
+          <button
               className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3 mr-2"
               onClick={openAgregarModal}
             >
               Editar
             </button>
+
+            <button
+          className="rounded-md border hover:bg-blue-700 border-blue-700 bg-blue-500 text-white py-1 px-3 mr-2"
+          onClick={handleAlert}
+        >
+          Marcar
+        </button>
+
             <button
   className="rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
   type="button"
@@ -188,20 +217,22 @@ export default function CardInventory({ name, comidas, description, description2
             text: 'Este modulo ha sido eliminado.',
             icon: 'success'
           });
-          // Aquí puedes colocar la lógica para eliminar el elemento
+         
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({
             title: 'Cancelado',
             text: 'Modulo a salvo',
             icon: 'error'
           });
-          // Aquí puedes agregar alguna lógica adicional en caso de cancelación
+         
         }
       });
   }}
 >
   Eliminar
 </button>
+
+
           </td>
         </tr>
       </tbody>

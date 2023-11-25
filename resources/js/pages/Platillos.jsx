@@ -11,16 +11,16 @@ export default function Platillos() {
     <div className='overflow-scroll'>
     <Navbar section="Modulo de platillos" addBtn="Agregar" />
       <main
-        className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center gap-4 -mb-32'
+        className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center gap-4 -mb-28'
         
       >
-        <Card name="California" comidas={"california.jpg"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Mar y Tierra" comidas={"Sushi1.png"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Gohan" comidas={"gohan.png"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Milenia Roll" comidas={"milenia.jpeg"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Queso Roll" comidas={"queso.jpg"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Gohan" comidas={"gohan.png"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="California" comidas={"california.jpg"} price="$130.50" description="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="California" comidas={"california.jpg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Mar y Tierra" comidas={"Sushi1.png"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Gohan" comidas={"Sushi1.png"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Milenia Roll" comidas={"milenia.jpeg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+        <Card name="Queso Roll" comidas={"queso.jpg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
+      
+        <Card name="California" comidas={"california.jpg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
         <br />
         <br />
       </main>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import AgregarModal from './ModalInv';
+import AgregarModal from './ModalClient';
 
-export default function NavbarInv({ isOpen, onClose, children, section, addBtn }) {
+export default function NavbarClient({ isOpen, onClose, children, section, addBtn }) {
   const [agregarModalOpen, setAgregarModalOpen] = useState(false);
 
   const openAgregarModal = () => {
@@ -26,7 +26,7 @@ export default function NavbarInv({ isOpen, onClose, children, section, addBtn }
         Agregar
       </button>
 
-      
+      {/* Agregar el componente AgregarModal */}
       <AgregarModal isOpen={agregarModalOpen} onClose={closeAgregarModal} />
     </nav>
   );

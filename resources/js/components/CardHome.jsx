@@ -59,7 +59,7 @@ export default function CardHome({ name, comidas, description,description2, opti
 
   return (
     
-    <div className="bg-slate-500 shadow-md rounded-2xl p-2 mb-12 mx-auto sm:w-2/3 md:w-1/2 flex flex-col">
+    <div className="bg-slate-500 shadow-md rounded-3xl mb-96 p-2 mx-2 flex flex-col">
       <div className="flex items-center">
         <img
           src={comidas}
