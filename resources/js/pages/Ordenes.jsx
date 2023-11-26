@@ -14,7 +14,7 @@ export default function Ordenes() {
            
 
 
-                <CardOrder name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} description="Mesa 7"/>
+                <CardOrder name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} description="En restaurante: orden en Mesa 7"/>
                 <CardOrder name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} description="Para llevar: Recogen en Restaurante"/>
                 <CardOrder name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} description="Para llevar: Domicilio 5 de mayo"/>
                 <CardOrder name="2 California Roll, 3 Tempura Roll" comidas={"rest.png"} description="Para llevar: Domicilio 5 de mayo"/>

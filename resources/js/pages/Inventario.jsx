@@ -4,7 +4,6 @@ import CardInventory from '../components/CardInventory';
 import Navbar from '../components/Navbar';
 import Layout from '../layouts/Layout';
 import NavbarInv from '../components/NabvarInv';
-import Table from '../components/Table';
 
 export default function Inventario() {
   return (

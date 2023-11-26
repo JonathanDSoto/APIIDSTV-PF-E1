@@ -37,8 +37,12 @@ const ModalInv = ({ isOpen, onClose }) => {
                                 <option className='text-black' selected="">Seleccionar</option>
                                 <option className='text-black' value="RS">Carnes</option>
                                 <option className='text-black' value="Ll">Liquidos</option>
-                                <option className='text-black' value="Ll">Ingredientes</option>
-                                <option className='text-black' value="Ll">Otros</option>
+                                <option className='text-black' value="Ll">Condimento</option>
+                                <option className='text-black' value="Ll">Verdura</option>
+                                <option className='text-black' value="Ll">Lacteo</option>
+                                <option className='text-black' value="Ll">Fruta</option>
+                                <option className='text-black' value="Ll">Bebida</option>
+                                <option className='text-black' value="Ll">Grano</option>
 
                             </select>
                         </div>

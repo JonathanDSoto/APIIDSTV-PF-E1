@@ -31,22 +31,13 @@ const ModalPlatillo = ({ isOpen, onClose }) => {
                             required
                         />
 
-<label htmlFor="nuevoElemento" className="block mb-2 text-sm font-medium text-gray-900">
-                           Categoria
-                        </label>
-                        <input
-                            type="text"
-                            id="nuevoElemento"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="Ingresar"
-                            required
-                        />
+
 
                
 
 
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Ingredientes 1</label>
+                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Ingredientes </label>
                         <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option className='text-black' selected="">Seleccionar</option>
                             <option className='text-black' value="RS">Aguacate</option>
@@ -56,27 +47,7 @@ const ModalPlatillo = ({ isOpen, onClose }) => {
                         </select>
                     </div>
 
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Ingredientes 2</label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option className='text-black' selected="">Seleccionar</option>
-                            <option className='text-black' value="RS">Aguacate</option>
-                            <option className='text-black' value="Ll">Camaron</option>
-                            <option className='text-black' value="DM">Arroz</option>
-                            
-                        </select>
-                    </div>
-
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Ingredientes 3</label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option className='text-black' selected="">Seleccionar</option>
-                            <option className='text-black' value="RS">Aguacate</option>
-                            <option className='text-black' value="Ll">Camaron</option>
-                            <option className='text-black' value="DM">Arroz</option>
-                            
-                        </select>
-                    </div>
+                    
 
 
                         <label htmlFor="nuevoElemento" className="block mb-2 text-sm font-medium text-gray-900">

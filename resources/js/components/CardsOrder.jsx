@@ -71,8 +71,8 @@ const closeAgregarModal = () => {
  
 
   return (
-    <div className="bg-white shadow-md rounded-lg mb-8 mx-24 p-4 flex flex-col w-64">
-      <div className="flex items-center">
+    <div className="bg-white shadow-md rounded-2xl mb-8 mx-4 p-4 flex flex-col ">
+      <div className="flex items-center flex-col">
        
         <div className="flex-grow">
           <div className="text-xs text-blue-700 font-medium">{option}</div>
@@ -95,75 +95,75 @@ const closeAgregarModal = () => {
           </div>
           <div className="text-xs text-blue-700 font-medium">{conxt}</div>
           <div className="text-xs text-black font-medium">{conxt2}</div>
-          <div className="flex space-x-3 text-sm font-medium mt-2">
+          <div className="flex justify-center space-x-3 text-md font-semibold mt-1">
             
           <button
-              className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3 mr-2"
+              className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-8 mr-2 mt-10"
               onClick={openAgregarModal}
             >
               Editar
             </button>
+           
             <button
-   className="rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
-  type="button"
-  onClick={() => {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
-      },
-      buttonsStyling: false
-    });
-    
+              className="rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-8 mr-2 mt-10"
+              type="button"
+              onClick={() => {
+                const swalWithBootstrapButtons = Swal.mixin({
+                  customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger",
+                  },
+                  buttonsStyling: false,
+                });
 
-    const swalWithColorText = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success  text-black',
-        cancelButton: 'btn btn-danger text-black',
-        content: 'text-blue-500', 
-        title: 'text-black', 
-        footer: 'text-red-500'
-      },
-      buttonsStyling: false
-    });
-    
-    swalWithColorText.fire({
-      title: '¿Estás seguro?',
-      text: '¡No podrás revertir esto!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminarlo',
-      cancelButtonText: 'No, cancelar',
-      reverseButtons: true
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire({
-            title: '¡Eliminado!',
-            text: 'Este modulo ha sido eliminado.',
-            icon: 'success'
-          });
-          // Aquí puedes colocar la lógica para eliminar el elemento
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swalWithBootstrapButtons.fire({
-            title: 'Cancelado',
-            text: 'Modulo a salvo',
-            icon: 'error'
-          });
-          // Aquí puedes agregar alguna lógica adicional en caso de cancelación
-        }
-      });
-  }}
->
-  Eliminar
-</button>
-            <button
-          className="rounded-md border hover:bg-blue-300 hover:text-white text-blue-500 border-purple-500 py-1 px-3"
-          type="button"
-          onClick={handleAlert}
-        >
-          {boton}
-        </button>
+                const swalWithColorText = Swal.mixin({
+                  customClass: {
+                    confirmButton:
+                      "btn btn-success  text-black",
+                    cancelButton:
+                      "btn btn-danger text-black",
+                    content: "text-blue-500",
+                    title: "text-black",
+                    footer: "text-red-500",
+                  },
+                  buttonsStyling: false,
+                });
+
+                swalWithColorText
+                  .fire({
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás revertir esto!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, eliminarlo",
+                    cancelButtonText: "No, cancelar",
+                    reverseButtons: true,
+                  })
+                  .then((result) => {
+                    if (result.isConfirmed) {
+                      swalWithBootstrapButtons.fire({
+                        title: "¡Eliminado!",
+                        text: "Este modulo ha sido eliminado.",
+                        icon: "success",
+                      });
+                      // Aquí puedes colocar la lógica para eliminar el elemento
+                    } else if (
+                      result.dismiss ===
+                      Swal.DismissReason.cancel
+                    ) {
+                      swalWithBootstrapButtons.fire({
+                        title: "Cancelado",
+                        text: "Modulo a salvo",
+                        icon: "error",
+                      });
+                      // Aquí puedes agregar alguna lógica adicional en caso de cancelación
+                    }
+                  });
+              }}
+            >
+              Eliminar
+            </button>
+            
 
             
 

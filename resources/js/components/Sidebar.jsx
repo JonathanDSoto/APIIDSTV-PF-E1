@@ -5,21 +5,20 @@ import { NavLink } from "react-router-dom";
 function Sidebar() {
     const [open, setOpen] = useState(false);
     const Menus = [
-        { icon: "🏠", title: "Inicio", ruta: '/inicio' },
+        { icon: "🏠", title: "Inicio", ruta: '/inicio'  },
         { icon: "🗒️", title: "Ordenes", ruta: '/ordenes' },
         { icon: "🍽️", title: "Platillos", ruta: '/platillos' },
         { icon: "🥕", title: "Inventario", ruta: '/inventario' },
-        { icon: "👤", title: "Clientes", ruta: '/clientes' },
-        {},{  
-        },
-        { icon: "📤", title: 'Salir', ruta: '/' },
+        { icon: "👤", title: "Clientes", ruta: '/clientes'},
+       
+        { icon: "📤", title: 'Salir', ruta: '/' , gap:true },
     ];
 
     return (
         <div className="flex">
-            <div
+            <div 
                 className={` ${open ? "w-60" : "w-[4.8rem]"
-                    } bg-slate-950 h-screen p-5 pt-8 top-0 fixed duration-300`}
+                    } bg-slate-950 h-screen p-5 pt-8 top-0 fixed z-40 duration-300`}
             >
                 <a 
                     src="/circulo.png"
