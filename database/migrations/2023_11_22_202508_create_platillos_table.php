@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('platillos', function (Blueprint $table) {
-            $table->bigIncrements('id')->nullable( false )->unsigned();
-            $table->string('nombre', 50)->nullable( false );
+            $table->bigIncrements('id')->nullable(false)->unsigned();
+            $table->string('nombre', 50)->nullable(false)->unique();
             $table->string('descripcion', 100)->nullable(false);
             $table->decimal('precio', 8, 2)->nullable(false);
-            $table->string('imagen', 100)->nullable(false);
+            $table->string('imagen_path', 255)->nullable(true)->default(asset('img/default.png'));
             $table->unsignedBigInteger('id_inventario');
             $table->timestamps();
             

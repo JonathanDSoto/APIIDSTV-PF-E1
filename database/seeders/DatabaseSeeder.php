@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             //UserSeeder::class,
             //InventarioSeeder::class,
-            //PlatilloSeeder::class,
+            PlatilloSeeder::class,
             //OrdenSeeder::class,
             //ClienteSeeder::class,
         ]);

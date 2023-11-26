@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ordenes', function (Blueprint $table) {
             $table->bigIncrements('id')->nullable( false )->unsigned();
-            $table->integer('mesa')->nullable(false);
+            $table->integer('mesa')->nullable(true)->unique();
             $table->integer('cantidad')->nullable(false);
             $table->enum('tipo_orden', ['domicilio', 'restaurante'])->nullable(false);
             $table->string('direccion')->nullable(true);
