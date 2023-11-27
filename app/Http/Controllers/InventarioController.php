@@ -22,7 +22,7 @@ class InventarioController extends Controller
             $inventarios = Inventario::all();
             return ApiResponse::success("Listado de productos en Inventario", 200, $inventarios);
         } catch(Exception $e){
-            return ApiResponse::error('Error al obtener los productso de Inventario: ' .$e->getMessage(), 500);
+            return ApiResponse::error('Error al obtener los productos de Inventario: ' .$e->getMessage(), 500);
         }
     }
 
@@ -86,8 +86,8 @@ class InventarioController extends Controller
     public function destroy($id)
     {
         try {
-            $marca = Inventario::findOrFail($id);
-            $marca->delete();
+            $inventario = Inventario::findOrFail($id);
+            $inventario->delete();
             return ApiResponse::success('Producto eliminado de inventario exitosamente', 200);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Producto no encontrado de inventario', 404);
