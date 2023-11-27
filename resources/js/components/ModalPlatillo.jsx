@@ -17,7 +17,7 @@ const ModalPlatillo = ({ isOpen, onClose }) => {
                     <span className="text-xl">×</span>
                 </button>
                 <div>
-                    <h2 className='text-center mb-5'>Agregar Platillo</h2>
+                    <h2 className='text-center mb-5'>Platillos</h2>
                     <div>
 
                     <label htmlFor="nuevoElemento" className="block mb-2 text-sm font-medium text-gray-900">

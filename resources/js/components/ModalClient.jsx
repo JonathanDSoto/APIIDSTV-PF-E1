@@ -17,7 +17,7 @@ const ModalClient = ({ isOpen, onClose }) => {
                     <span className="text-xl">×</span>
                 </button>
                 <div>
-                    <h2 className='text-center mb-5'>Agregar Registro</h2>
+                    <h2 className='text-center mb-5'>Registros</h2>
                     <div>
 
                         <label htmlFor="nuevoElemento" className="block mb-2 text-sm font-medium text-gray-900">

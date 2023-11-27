@@ -17,7 +17,7 @@ const Modal = ({ isOpen, onClose }) => {
                     <span className="text-xl">×</span>
                 </button>
                 <div>
-                    <h2 className='text-center mb-5'>Agregar Orden</h2>
+                    <h2 className='text-center mb-5'>Orden</h2>
                     <div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona el platillo</label>
