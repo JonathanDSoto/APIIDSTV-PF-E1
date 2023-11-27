@@ -15,5 +15,10 @@ class Inventario extends Model
         'tipo',
         'unidad_medida',
     ];
+
+    public function inventarios()
+    {
+        return $this->belongsToMany(Inventario::class, 'platillo_inventario', 'id_platillo', 'id_inventario');
+    }
     
 }

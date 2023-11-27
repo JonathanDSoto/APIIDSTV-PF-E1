@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Responses\ApiResponse;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\Rule;
 use Exception;
 
 class InventarioController extends Controller
@@ -66,7 +65,7 @@ class InventarioController extends Controller
         try {
             $inventario = Inventario::findOrFail($id);
             $request->validate([
-                'nombre' => ['required|unique:inventarios|string|max:50', Rule::unique('Inventarios')->ignore($inventario)],
+                'nombre' => 'required|unique:inventarios|string|max:50' . $request->id ,
                 'cantidad' => 'required|numeric|min:1',
                 'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento',
                 'unidad_medida' => 'required|in:Litros,Kilogramos',

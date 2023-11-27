@@ -34,7 +34,6 @@ class PlatilloFactory extends Factory
             'descripcion' => $this->faker->words(3, true),
             'precio' => $this->faker->randomFloat(2, 50, 100),
             'imagen_path' => $platilloAleatorio['imagen_path'],
-            'id_inventario' => InventarioFactory::new()
         ];
     }
 }

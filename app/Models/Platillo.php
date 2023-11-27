@@ -14,12 +14,11 @@ class Platillo extends Model
         'descripcion',
         'precio',
         'imagen_path',
-        'id_inventario',
     ];
 
-    public function inventario() //Un inventario puede tener muchos platillos asociados
+    public function platillo()
     {
-        return $this->belongsTo(Inventario::class, 'id_inventario');
+        return $this->belongsToMany(Platillo::class, 'platillo_inventario', 'id_inventario', 'id_platillo');
     }
     
 }

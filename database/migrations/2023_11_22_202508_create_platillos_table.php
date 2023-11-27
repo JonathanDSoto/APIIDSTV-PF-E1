@@ -16,13 +16,8 @@ return new class extends Migration
             $table->string('nombre', 50)->nullable(false)->unique();
             $table->string('descripcion', 100)->nullable(false);
             $table->decimal('precio', 8, 2)->nullable(false);
-            $table->string('imagen_path', 255)->nullable(true)->default(asset('img/default.png'));
-            $table->unsignedBigInteger('id_inventario');
+            $table->string('imagen_path', 255)->nullable(true)->default(asset('/public/default.png'));
             $table->timestamps();
-            
-            $table->foreign('id_inventario')->references('id')->on('inventarios')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 

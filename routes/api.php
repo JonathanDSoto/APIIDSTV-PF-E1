@@ -5,6 +5,7 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PlatilloController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlatilloInventarioController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,4 +26,4 @@ Route::apiresource('inventarios', InventarioController::class);
 Route::apiResource('platillos', PlatilloController::class);
 Route::apiResource('ordenes', OrdenController::class);
 Route::apiResource('clientes', ClienteController::class);
-
+Route::apiResource('platillosInventarios', PlatilloInventarioController::class);
