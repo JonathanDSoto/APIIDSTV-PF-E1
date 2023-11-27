@@ -96,6 +96,17 @@ class PlatilloController extends Controller
                 'imagen_path' => 'string|max:255',
                 'id_inventario' => 'required|exists:inventarios,id',
             ]);
+            // Obtener el inventario correspondiente
+            $inventario = Inventario::find($request->id_inventario);
+
+            // Verificar si hay suficiente cantidad de inventario
+            if ($inventario->cantidad < $request->id_inventario) {
+                return ApiResponse::error("Cantidad no disponible", 422);
+            }
+
+            // Restar la cantidad de inventario
+            $inventario->decrement('cantidad', $request->id_inventario);
+            
             $platillo->update($request->all());
             return ApiResponse::success("Platillo actualizado exitosamente", 200, $platillo);
         } catch(ValidationException $errors){
