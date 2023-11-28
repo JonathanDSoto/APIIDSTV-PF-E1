@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Responses\ApiResponse;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
+use Exception;
 
 class UseController extends Controller
 {
@@ -15,21 +19,10 @@ class UseController extends Controller
     {
         try {
             $users = User::all();
-            return response()->json($users, 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => 'Error al obtener los usuarios',
-                'error' => $th->getMessage()
-            ], 400);
+            return ApiResponse::success("Listado de usuarios", 200, $users);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error al obtener los usuarios: ' .$e->getMessage(), 500);
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -37,21 +30,25 @@ class UseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string|min:8'    
+            ]);
+
+            $validatedData['password'] = bcrypt($validatedData['password']);
+            $user = User::create($request->all());
+            return ApiResponse::success("Usuario creado exitosamente", 201, $user);
+        } catch(Exception $e){
+            return ApiResponse::error("Error al crear el platillo: ",422);
+        }
     }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }
