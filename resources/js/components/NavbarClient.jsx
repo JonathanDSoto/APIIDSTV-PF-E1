@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AgregarModal from './ModalClient';
 
-export default function NavbarClient({ isOpen, onClose, children, section, addBtn }) {
+export default function NavbarClient({ section }) {
   const [agregarModalOpen, setAgregarModalOpen] = useState(false);
 
   const openAgregarModal = () => {
