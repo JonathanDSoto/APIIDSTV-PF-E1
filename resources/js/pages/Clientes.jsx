@@ -5,65 +5,21 @@ import NavbarClient from "../components/NavbarClient";
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import { useFetch } from "../hooks/useFetch";
+import Swal from "sweetalert2";
+import DeleteItem from "../hooks/deleteItem";
 
 const apiData = useFetch("http://localhost:8000/api/clientes");
 
 export default function Clientes() {
 
-    const [showAlert, setShowAlert] = useState(false);
-
-    const handleAlert = () => {
-        // Utilizar SweetAlert2 para mostrar un mensaje
-        Swal.fire({
-            title: "Este orden ya esta marcada",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 2000,
-        });
-    };
-
-    useEffect(() => {
-        let timeout;
-        if (showAlert) {
-            timeout = setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-        }
-
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [showAlert]);
-
-    const handleEdit = () => {
-        // Lógica para editar
-    };
-
-    const handleDelete = () => {
-        // Lógica para eliminar
-    };
-
-    useEffect(() => {
-        let timeout;
-        if (showAlert) {
-            timeout = setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-        }
-
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [showAlert]);
-
     const [agregarModalOpen, setAgregarModalOpen] = useState(false);
-
+  
     const openAgregarModal = () => {
-        setAgregarModalOpen(true);
+      setAgregarModalOpen(true);
     };
-
+  
     const closeAgregarModal = () => {
-        setAgregarModalOpen(false);
+      setAgregarModalOpen(false);
     };
     return (
         <Layout>
@@ -133,78 +89,7 @@ export default function Clientes() {
                                                 Editar
                                             </button>
 
-                                            <button
-                                                className="rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
-                                                type="button"
-                                                onClick={() => {
-                                                    const swalWithBootstrapButtons =
-                                                        Swal.mixin({
-                                                            customClass: {
-                                                                confirmButton:
-                                                                    "btn btn-success",
-                                                                cancelButton:
-                                                                    "btn btn-danger",
-                                                            },
-                                                            buttonsStyling: false,
-                                                        });
-
-                                                    const swalWithColorText =
-                                                        Swal.mixin({
-                                                            customClass: {
-                                                                confirmButton:
-                                                                    "btn btn-success  text-black",
-                                                                cancelButton:
-                                                                    "btn btn-danger text-black",
-                                                                content:
-                                                                    "text-blue-500",
-                                                                title: "text-black",
-                                                                footer: "text-red-500",
-                                                            },
-                                                            buttonsStyling: false,
-                                                        });
-
-                                                    swalWithColorText
-                                                        .fire({
-                                                            title: "¿Estás seguro?",
-                                                            text: "¡No podrás revertir esto!",
-                                                            icon: "warning",
-                                                            showCancelButton: true,
-                                                            confirmButtonText:
-                                                                "Sí, eliminarlo",
-                                                            cancelButtonText:
-                                                                "No, cancelar",
-                                                            reverseButtons: true,
-                                                        })
-                                                        .then((result) => {
-                                                            if (
-                                                                result.isConfirmed
-                                                            ) {
-                                                                swalWithBootstrapButtons.fire(
-                                                                    {
-                                                                        title: "¡Eliminado!",
-                                                                        text: "Este modulo ha sido eliminado.",
-                                                                        icon: "success",
-                                                                    }
-                                                                );
-                                                            } else if (
-                                                                result.dismiss ===
-                                                                Swal
-                                                                    .DismissReason
-                                                                    .cancel
-                                                            ) {
-                                                                swalWithBootstrapButtons.fire(
-                                                                    {
-                                                                        title: "Cancelado",
-                                                                        text: "Modulo a salvo",
-                                                                        icon: "error",
-                                                                    }
-                                                                );
-                                                            }
-                                                        });
-                                                }}
-                                            >
-                                                Eliminar
-                                            </button>
+                                           <DeleteItem endpoint="http://localhost:8000/api/clientes" itemId={cliente.id} />
                                         </td>
                                     </tr>
                                   ))}
