@@ -1,5 +1,3 @@
-// deleteData.js
-
 import axios from 'axios';
 
 const deleteData = async (endpoint, id) => {

@@ -1,8 +1,36 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 const ModalClient = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
+    const [id, setId] = useState(1);
+    const [nombre, setNombre] = useState("");
+    const [telefono, setTelefono] = useState(0);
+    const [correo, setCorreo] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    const update = async (e) => {
+        e.preventDefault();
+
+        await axios.put(`http://localhost:8000/api/clientes/${id}`, { nombre: nombre, telefono: telefono, email: correo, password: password });
+        onClose();
+        window.location.reload();
+    }
+
+    useEffect(() => {
+        const getClientById = async () => {
+            const response = await axios.get(`http://localhost:8000/api/clientes/${id}`);
+            const { data } = response;
+            setNombre(data.data.nombre);
+            setTelefono(data.data.telefono);
+            setCorreo(data.data.email);
+            setPassword(data.data.password);
+        }
+        getClientById();
+            
+    }, []);
 
     return (
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
@@ -14,8 +42,8 @@ const ModalClient = ({ isOpen, onClose }) => {
                     X
                 </button>
                 <div>
-                    <h2 className="text-center mb-5">Registros</h2>
-                    <div>
+                    <h2 className="text-center mb-5">Editar Cliente</h2>
+                    <form onSubmit={update}>
                         <label
                             htmlFor="nuevoElemento"
                             className="block mb-2 text-sm font-medium text-gray-900"
@@ -23,6 +51,8 @@ const ModalClient = ({ isOpen, onClose }) => {
                             Nombre:
                         </label>
                         <input
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
                             type="text"
                             id="nuevoElemento"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -37,6 +67,8 @@ const ModalClient = ({ isOpen, onClose }) => {
                             Teléfono:
                         </label>
                         <input
+                            value={telefono}
+                            onChange={(e) => setTelefono(e.target.value)}
                             type="number"
                             id="nuevoElemento"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -51,6 +83,23 @@ const ModalClient = ({ isOpen, onClose }) => {
                             Correo Electrónico:
                         </label>
                         <input
+                            value={correo}
+                            onChange={(e) => setCorreo(e.target.value)}
+                            type="text"
+                            id="nuevoElemento"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Ingresar"
+                            required
+                        />
+                        <label
+                            htmlFor="nuevoElemento"
+                            className="block mb-2 text-sm font-medium text-gray-900"
+                        >
+                            Contra:
+                        </label>
+                        <input
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             type="text"
                             id="nuevoElemento"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -73,7 +122,7 @@ const ModalClient = ({ isOpen, onClose }) => {
                                 Guardar
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AgregarModal from './ModalClient';
+import EditClient from './CrearCliente';
 
 export default function NavbarClient({ section }) {
   const [agregarModalOpen, setAgregarModalOpen] = useState(false);
@@ -27,7 +27,7 @@ export default function NavbarClient({ section }) {
       </button>
 
       {/* Agregar el componente AgregarModal */}
-      <AgregarModal isOpen={agregarModalOpen} onClose={closeAgregarModal} />
+      <EditClient isOpen={agregarModalOpen} onClose={closeAgregarModal} />
     </nav>
   );
 }
