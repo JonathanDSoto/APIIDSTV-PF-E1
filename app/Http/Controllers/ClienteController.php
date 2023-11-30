@@ -34,8 +34,8 @@ class ClienteController extends Controller
             $request->validate([
                 'nombre' => 'required|string|max:50|min:3',
                 'apellido' => 'string|max:100|min:3',
-                'email' => 'required|unique:clientes,email|string|max:100|email|ends_with:@gmail.com',
-                'telefono' => 'required|numeric|unique:clientes,telefono|max:9999999999|min:1000000000',
+                'email' => 'required|string|max:100|email|regex:/^.+@.+$/i|unique:clientes,email,',
+                'telefono' => 'required|numeric|max:9999999999|min:1000000000|unique:clientes,telefono',
             ]);
             $cliente = Cliente::create($request->all());
             return ApiResponse::success("Cliente creado exitosamente", 201, $cliente);
@@ -67,7 +67,7 @@ class ClienteController extends Controller
             $request->validate([
                 'nombre' => 'required|string|max:50' . $cliente->id,
                 'apellido' => 'string|max:100|min:3',
-                'email' => 'required|string|max:100|email|ends_with:@gmail.com|unique:clientes,email,' . $cliente->id,
+                'email' => 'required|string|max:100|email|regex:/^.+@.+$/i|unique:clientes,email,' . $cliente->id,
                 'telefono' => 'required|numeric|max:9999999999|min:1000000000|unique:clientes,telefono,' . $cliente->id,
             ]);
             $cliente->update($request->all());
