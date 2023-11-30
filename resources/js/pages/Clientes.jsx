@@ -124,6 +124,8 @@ export default function Clientes() {
                                                             "#d33",
                                                         confirmButtonText:
                                                             "Sí, eliminar",
+                                                        cancelButtonText:
+                                                            "Cancelar",
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
                                                             deleteCliente(cliente.id);

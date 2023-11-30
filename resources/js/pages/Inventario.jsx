@@ -8,7 +8,7 @@ import deleteData from "../hooks/DeleteButton";
 import { useState, useEffect } from "react";
 
 export default function Inventario() {
-
+  
     const [cantidadMinima, setCantidadMinima] = useState(37);
 
     const [productos, setProductos] = useState([]);
@@ -16,6 +16,17 @@ export default function Inventario() {
     useEffect(() => {
         useFetch("inventarios").then((data) => setProductos(data));
     }, []);
+
+    const deleteProducto = async (id) => {
+        try {
+            await deleteData("inventarios", id);
+            const data = await useFetch("inventarios");
+            
+            setProductos(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const [agregarModalOpen, setAgregarModalOpen] = useState(false);
 
@@ -130,8 +141,11 @@ export default function Inventario() {
                                                             "#d33",
                                                         confirmButtonText:
                                                             "Sí, eliminar",
+                                                        cancelButtonText:
+                                                            "Cancelar",
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
+                                                            deleteProducto(producto.id);
                                                             Swal.fire(
                                                                 "Eliminado",
                                                                 "El registro ha sido eliminado",
