@@ -16,7 +16,7 @@ class OrdenFactory extends Factory
     public function definition(): array
     {
         return [
-            'mesa' => $this->faker->unique()->numberBetween(1, 500),
+            'mesa' => $this->faker->unique()->numberBetween(1, 20),
             'cantidad' => $this->faker->numberBetween(1, 10),
             'tipo_orden' => $this->faker->randomElement(['domicilio', 'restaurante']),
             'direccion' => $this->faker->words(1, true),
