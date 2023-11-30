@@ -6,7 +6,7 @@ export default function Login() {
         <div>
             <div className="loginwrapper ">
                 <div className="lg-inner-column">
-                    <div className="left-columns lg:w-1/2 lg:block hidden">
+                    <div className="left-columns lg:w-1/2 lg:flex hidden">
                         <div className="logo-box-3">
                             <img
                                 src="/Example.jpg"

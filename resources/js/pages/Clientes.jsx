@@ -16,15 +16,15 @@ export default function Clientes() {
     }, []);
 
     const deleteCliente = async (id) => {
-    try {
-        await deleteData("clientes", id);
-        const clientesData = await useFetch("clientes");
-        
-        setClientes(clientesData);
-    } catch (error) {
-        console.error(error);
-    }
-};
+        try {
+            await deleteData("clientes", id);
+            const clientesData = await useFetch("clientes");
+            
+            setClientes(clientesData);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const [agregarModalOpen, setAgregarModalOpen] = useState(false);
 
