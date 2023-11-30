@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 50)->nullable(false)->unique();
             $table->integer('cantidad')->nullable(false);
             $table->string('tipo', 100)->nullable(false);
-            $table->string('unidad_medida', 10);
+            $table->string('unidad_medida', 10)->nullable(false);
             $table->timestamps();
         });
     }

@@ -32,15 +32,15 @@ class InventarioController extends Controller
     {
         try {
             $request->validate([
-                'nombre' => 'required|unique:inventarios|string|max:50',
+                'nombre' => 'required|unique:inventarios|string|max:50|min:3',
                 'cantidad' => 'required|numeric|min:1',
-                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento|string|max:100',
-                'unidad_medida' => 'required|in:Litros,Kilogramos|string|max:10',
+                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento,Crustáceo|string|max:100',
+                'unidad_medida' => 'required|in:Litros,Kilogramos,Gramos|string|max:10|min:5'
             ]);
             $inventario = Inventario::create(request()->all());
             return ApiResponse::success("Producto creado exitosamente a Inventario", 201, $inventario);
-        } catch (ValidationException $e) {
-            return ApiResponse::error("Error al crear el producto a Inventario: ",422, $e);
+        } catch(ValidationException $e){
+            return ApiResponse::error('Error al crear el producto de inventario: ' .$e->getMessage(), 422);
         }
     }
 
@@ -52,8 +52,8 @@ class InventarioController extends Controller
         try {
             $inventario = Inventario::findOrFail($id);
             return ApiResponse::success("Producto en Inventario", 200, $inventario);
-        } catch (Exception $e) {
-            return ApiResponse::error("Error al obtener el producto de Inventario: " .$e->getMessage(), 500);
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('Producto no encontrado de inventario', 404);
         }
     }
 
@@ -65,18 +65,16 @@ class InventarioController extends Controller
         try {
             $inventario = Inventario::findOrFail($id);
             $request->validate([
-                'nombre' => 'required|unique:inventarios|string|max:50' . $request->id ,
+                'nombre' => 'required|unique:inventarios|string|max:50|min:3' . $request->id,
                 'cantidad' => 'required|numeric|min:1',
-                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento',
-                'unidad_medida' => 'required|in:Litros,Kilogramos',
+                'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento|string|max:100',
+                'unidad_medida' => 'required|in:Litros,Kilogramos,Gramos|string|max:10|min:3'
             ]);
             $inventario->update($request->all());
             return ApiResponse::success('Producto de Inventario actualizado exitosamente', 200, $inventario);
-        } catch (ModelNotFoundException $e){
-            return ApiResponse::error('inventario no encontrada', 404);
-        } catch (Exception $e) {
-            return ApiResponse::error('Error de validación: ' . $e->getMessage(), 422);
-        } 
+        } catch(ValidationException $e){
+            return ApiResponse::error('Error al crear el producto de inventario: ' .$e->getMessage(), 422);
+        }
     }
 
     /**

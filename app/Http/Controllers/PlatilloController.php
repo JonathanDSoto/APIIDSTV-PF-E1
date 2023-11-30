@@ -21,7 +21,7 @@ class PlatilloController extends Controller
             $platillos = Platillo::all();
             return ApiResponse::success("Listado de platillos", 200, $platillos);
         } catch (Exception $e) {
-            return ApiResponse::error('Error al obtener los platillos: ' .$e->getMessage(), 500);
+            return ApiResponse::error('Error al obtener los platillos: ' . $e->getMessage(), 500);
         }
     }
 
@@ -32,22 +32,46 @@ class PlatilloController extends Controller
     {
         try {
             $request->validate([
-                'nombre' => 'required|unique:platillos|string|max:50',
-                'descripcion' => 'required|string|max:100',
-                'precio' => 'required|numeric|min:50',
-                'imagen_path' => 'string|max:255',
+                'nombre' => 'required|unique:platillos|string|max:50|min:3',
+                'descripcion' => 'required|string|max:100|min:10',
+                'precio' => 'required|numeric|min:0',
+                'imagen_path' => 'mimes:jpeg,png,jpg,svg|max:51200',
             ]);
+    
+            $rutaDestino = '';
+    
+            if ($request->hasFile('imagen_path')) {
+                $imagen = $request->file('imagen_path');
+                $nombreImagen = $request->nombre . '.' . $imagen->getClientOriginalExtension();
+                $rutaDestino = asset('public/platillos/' . $nombreImagen);
+                $imagen->move(public_path('platillos'), $nombreImagen);
+            }
 
-            $platillo = Platillo::create($request->all());
 
-            return ApiResponse::success("Platillo creado exitosamente", 201, $platillo);
-        } catch(ValidationException $errors){
-            return ApiResponse::error("Error al crear el platillo: ",422, $errors);
-        }catch(ModelNotFoundException $e){
-            return ApiResponse::error('Platillo no creado', 404);
+            if($request->imagen_path == null){
+                $rutaDestino = asset('/public/sushi.png');
+            }
+    
+            $platillo = Platillo::create([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'precio' => $request->precio,
+                'imagen_path' => $rutaDestino,
+            ]);
+    
+            $imagenUrl = asset($rutaDestino);
+    
+            return ApiResponse::success("Platillo creado exitosamente", 201, [
+                'platillo' => $platillo,
+                'imagen_url' => $imagenUrl,
+            ]);
+        } catch (ValidationException $errors) {
+            return ApiResponse::error("Error al crear el platillo: ", 400, $errors->errors());
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('Platillo no creado', 400);
         }
     }
-
+    
     /**
      * Display the specified resource.
      */
@@ -56,10 +80,10 @@ class PlatilloController extends Controller
         try {
             $platillo = Platillo::findOrFail($id);
             return ApiResponse::success("Platillo encontrado", 200, $platillo);
-        } catch(ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Platillo no encontrado', 404);
         }
-    
+
     }
 
     /**
@@ -67,21 +91,45 @@ class PlatilloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $platillo = Platillo::findOrFail($id);
-            $request->validate([
-                'nombre' => 'required|unique:platillos,nombre|string|max:50' . $platillo->id,
-                'descripcion' => 'required|string|max:100',
-                'precio' => 'required|numeric|min:50',
-                'imagen_path' => 'string|max:255',
-            ]);            
-            $platillo->update($request->all());
-            return ApiResponse::success("Platillo actualizado exitosamente", 200, $platillo);
-        } catch(ValidationException $errors){
-            return ApiResponse::error("Error al actualizar el platillo: ",422, $errors);
-        }catch(ModelNotFoundException $e){
-            return ApiResponse::error('Platillo no encontrado', 404);
+       try {
+        $platillo = Platillo::findOrFail($id);
+        $request->validate([
+            'nombre' => 'required|string|max:50|min:3' . $request->id,
+            'descripcion' => 'required|string|max:100|min:10',
+            'precio' => 'required|numeric|min:0',
+            'imagen_path' => 'mimes:jpeg,png,jpg,svg|max:51200|nullable',
+        ]);
+
+        $rutaDestino = '';   
+
+        if ($request->hasFile('imagen_path')) {
+            $imagen = $request->file('imagen_path');
+            $nombreImagen = $request->nombre . '.' . $imagen->getClientOriginalExtension();
+            $rutaDestino = asset('/public/gohan.png') . $nombreImagen;
+            $imagen->move(public_path('platillos'), $nombreImagen);
         }
+        if($request->imagen_path == null){
+            $rutaDestino = asset('/public/sushi.png');
+        }
+
+        $platillo->update([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'imagen_path' => $rutaDestino,
+        ]);
+
+        $imagenUrl = asset($rutaDestino);
+
+        return ApiResponse::success("Platillo actualizado exitosamente", 200, [
+            'platillo' => $platillo,
+            'imagen_url' => $imagenUrl,
+        ]);
+       } catch (ValidationException $errors) {
+        return ApiResponse::error("Error al actualizar el platillo: ", 400, $errors->errors());
+       } catch (ModelNotFoundException $e) {
+        return ApiResponse::error('Platillo no actualizado', 400);
+       }
     }
 
     /**
@@ -91,10 +139,19 @@ class PlatilloController extends Controller
     {
         try {
             $platillo = Platillo::findOrFail($id);
+
+            $imagen_path = $platillo->imagen_path;
+            
+            if ($imagen_path != asset('sushi.png')) {
+                $imagen_path = str_replace(asset('/public'), '', $imagen_path);
+                if (file_exists(public_path($imagen_path))) {
+                    unlink(public_path($imagen_path));
+                }
+            }
             $platillo->delete();
             return ApiResponse::success("Platillo eliminado exitosamente", 200, $platillo);
         } catch (ModelNotFoundException $e) {
-            return ApiResponse::error("Platillo no encontrado: ",404);
-        } 
+            return ApiResponse::error("Platillo no encontrado: ", 404);
+        }
     }
 }

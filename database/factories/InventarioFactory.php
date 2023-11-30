@@ -16,7 +16,7 @@ class InventarioFactory extends Factory
      */
     public function definition(): array
     {
-         $menuInventario = [
+        $menuInventario = [
             ['nombre' => 'Coca Cola', 'tipo' => 'Bebida', 'unidad_medida' => 'Litros'],
             ['nombre' => 'Agua', 'tipo' => 'Bebida', 'unidad_medida' => 'Litros'],
             ['nombre' => 'Arroz', 'tipo' => 'Grano', 'unidad_medida' => 'kilogramos'],
@@ -34,13 +34,20 @@ class InventarioFactory extends Factory
             ['nombre' => 'Yogurt', 'tipo' => 'Lácteo', 'unidad_medida' => 'kilogramos'],
         ];
 
-        $inventarioAleatorio = $menuInventario[array_rand($menuInventario)];
+        //lista de nombres del menú
+        $nombresMenu = array_column($menuInventario, 'nombre');
+
+        //nombre único
+        $nombreAleatorio = $this->faker->unique()->randomElement($nombresMenu);
+
+        //producto asociado al nombre
+        $inventarioAleatorio = collect($menuInventario)->firstWhere('nombre', $nombreAleatorio);
 
         return [
             'nombre' => $inventarioAleatorio['nombre'],
             'cantidad' => $this->faker->numberBetween(1, 50),
             'tipo' => $inventarioAleatorio['tipo'],
-            'unidad_medida' => $inventarioAleatorio['unidad_medida']
+            'unidad_medida' => $inventarioAleatorio['unidad_medida'],
         ];
     }
 }

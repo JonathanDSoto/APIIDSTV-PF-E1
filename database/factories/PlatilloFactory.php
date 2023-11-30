@@ -20,11 +20,11 @@ class PlatilloFactory extends Factory
            ['nombre' => 'Sashimi Especial', 'imagen_path' => asset('/public/gohan.png')],
             ['nombre' => 'Dragon Roll' , 'imagen_path' => asset('/public/tempu.jpg')],
             ['nombre' => 'Nigiri de Salmón', 'imagen_path' => asset('/public/zana.jpg')],
-            ['nombre' => 'Sushi de Atún', 'imagen_path' => asset('/public/ebi.jpg')],
-            ['nombre' => 'Sushi de Camarón', 'imagen_path' => asset('/public/ebi.jpg')],
-            ['nombre' => 'Sushi de Pulpo', 'imagen_path' => asset('/public/ebi.jpg')],
-            ['nombre' => 'Sushi de Calamar', 'imagen_path' => asset('/public/ebi.jpg')],
-            ['nombre' => 'Sushi de Pescado Blanco', 'imagen_path' => asset('/public/ebi.jpg')]
+            ['nombre' => 'Sushi de Atún', 'imagen_path' => asset('/public/sushi.png')],
+            ['nombre' => 'Sushi de Camarón', 'imagen_path' => asset('/public/sushi.png')],
+            ['nombre' => 'Sushi de Pulpo', 'imagen_path' => asset('/public/sushi.png')],
+            ['nombre' => 'Sushi de Calamar', 'imagen_path' => asset('/public/sushi.png')],
+            ['nombre' => 'Sushi de Pescado Blanco', 'imagen_path' => asset('/public/sushi.png')]
         ];
         
         $platilloAleatorio = $this->faker->unique()->randomElement($platilloDeSushi);

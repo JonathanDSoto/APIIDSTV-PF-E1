@@ -75,8 +75,8 @@ class OrdenController extends Controller
         try {
             $orden = Orden::findOrFail($id);
             return ApiResponse::success("Orden encontrada", 200, $orden);
-        } catch (Exception $e) {
-            return ApiResponse::error("Error al obtener la orden: " .$e->getMessage(), 500);
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('Orden no encontrada', 404);
         }
     }
 
