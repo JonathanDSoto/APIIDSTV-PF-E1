@@ -6,16 +6,49 @@ const endpoint = "http://localhost:8000/api/clientes";
 const CrearCliente = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
-    const [nombre, setNombre] = useState("");
-    const [telefono, setTelefono] = useState(0);
-    const [correo, setCorreo] = useState("");
-    const [password, setPassword] = useState("12345678");
+    // States
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState(0);
+    const [email, setEmail] = useState("");
 
+    //TODO validate name, phone, email, password
+    const [isNameValid, setisNameValid] = useState(false);
+    const [isPhoneValid, setisPhoneValid] = useState(false);
+    const [isEmailValid, setisEmailValid] = useState(false);
+
+    // Focus check
+    const [isNameFocused, setIsNameFocused] = useState(false);
+    const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+    const [isEmailFocused, setIsEmailFocused] = useState(false);
+
+    //List of regex
+    const RegexName = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s-]+$/;
+    const RegexPhone = /^[1-9]+[0-9]*$/;
+    const RegexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
+    // Functions
+	function onSetName(value) {
+        setName(value);
+        setisNameValid(RegexName.test(value) && value.length > 0);       
+    }
+
+    function onSetPhone(value) {
+        setPhone(value);
+        setisPhoneValid(RegexPhone.test(value) && value.length > 0);   
+    }
+
+    function onSetEmail(value) {
+        setEmail(value);
+        setisEmailValid(RegexEmail.test(value) && value.length > 0);   
+    }
 
     const create = async (e) => {
         e.preventDefault();
 
-        await axios.post(endpoint, { nombre: nombre, telefono: telefono, email: correo, password: password });
+        console.log("Sending data:", { nombre: name, telefono: phone, email: email });
+
+        await axios.post(endpoint, { nombre: name, telefono: phone, email: email });
         onClose();
         window.location.reload();
     }
@@ -32,74 +65,78 @@ const CrearCliente = ({ isOpen, onClose }) => {
                 <div>
                     <h2 className="text-center mb-5">Crear Cliente</h2>
                     <form onSubmit={create}>
+                        {/*NAME*/}
                         <label
-                            htmlFor="nuevoElemento"
+                            htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             Nombre:
                         </label>
                         <input
-                            value={nombre}
-                            onChange={(e) => setNombre(e.target.value)}
+                            value={name}
+                            onChange={(e) => onSetName(e.target.value)}
+                            onFocus={() => setIsNameFocused(true)}
                             type="text"
-                            id="nuevoElemento"
+                            id="name"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="Ingresar"
+                            placeholder="Ingresar nombre"
                             required
                         />
-
+                        {isNameValid || !isNameFocused  ? null : (
+                        <div className="text-red-500 text-sm mt-1 mb-2">
+                            Ingrese nombre válido
+                            </div>
+                            )}
+                        {/*PHONE*/}
                         <label
-                            htmlFor="nuevoElemento"
+                            htmlFor="phone"
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             Teléfono:
                         </label>
                         <input
-                            value={telefono}
-                            onChange={(e) => setTelefono(e.target.value)}
+                            value={phone}
+                            onChange={(e) => onSetPhone(e.target.value)}
+                            onFocus={() => setIsPhoneFocused(true)}
                             type="number"
-                            id="nuevoElemento"
+                            id="phone"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="Ingresar"
+                            placeholder="Ingresar teléfono (10 dígitos)"
                             required
                         />
-
+                        {isPhoneValid || !isPhoneFocused  ? null : (
+                        <div className="text-red-500 text-sm mt-1 mb-2">
+                            Ingrese teléfono válido (10 dígitos)
+                            </div>
+                            )}             
+                        {/*EMAIL*/}
                         <label
-                            htmlFor="nuevoElemento"
+                            htmlFor="email"
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             Correo Electrónico:
                         </label>
                         <input
-                            value={correo}
-                            onChange={(e) => setCorreo(e.target.value)}
+                            value={email}
+                            onChange={(e) => onSetEmail(e.target.value)}
+                            onFocus={() => setIsEmailFocused(true)}
                             type="text"
-                            id="nuevoElemento"
+                            id="email"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="Ingresar"
+                            placeholder="Ingresar correo"
                             required
                         />
-                        <label
-                            htmlFor="nuevoElemento"
-                            className="block mb-2 text-sm font-medium text-gray-900"
-                        >
-                            Contra:
-                        </label>
-                        <input
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            type="text"
-                            id="nuevoElemento"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="Ingresar"
-                            required
-                        />
+                        {isEmailValid || !isEmailFocused  ? null : (
+                        <div className="text-red-500 text-sm mt-1 mb-2">
+                            Ingrese correo válido
+                            </div>
+                            )} 
 
                         <div className="flex justify-center mt-4">
                             <button
                                 type="button"
                                 className="btn rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
-                                onClick={onClose} // Puedes cambiar esto a onClose si este botón también debe cerrar la modal
+                                onClick={onClose} // onClose para cerrar modal?
                             >
                                 Cancelar
                             </button>
