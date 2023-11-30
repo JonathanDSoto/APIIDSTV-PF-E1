@@ -45,7 +45,8 @@ class InventarioFactory extends Factory
 
         return [
             'nombre' => $inventarioAleatorio['nombre'],
-            'cantidad' => $this->faker->numberBetween(1, 50),
+            'cantidad' => $this->faker->numberBetween(20, 50),
+            'cantidad_minima' => $this->faker->numberBetween(10, 20),
             'tipo' => $inventarioAleatorio['tipo'],
             'unidad_medida' => $inventarioAleatorio['unidad_medida'],
         ];

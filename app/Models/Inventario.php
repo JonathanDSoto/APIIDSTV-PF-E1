@@ -12,6 +12,7 @@ class Inventario extends Model
     protected $fillable = [
         'nombre',
         'cantidad',
+        'cantidad_minima',
         'tipo',
         'unidad_medida',
     ];
