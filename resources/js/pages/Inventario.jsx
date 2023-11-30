@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 
 export default function Inventario() {
   
-    const [cantidadMinima, setCantidadMinima] = useState(37);
+    const [cantidadMinima, setCantidadMinima] = useState(7);
 
     const [productos, setProductos] = useState([]);
 
@@ -42,7 +42,7 @@ export default function Inventario() {
         <Layout>
             <div className="overflow-scroll">
                 <NavbarInv
-                    section="Modulo de inventario"
+                    section="Módulo de inventario"
                     addBtn="Agregar producto"
                 />
                 <main className="h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center  -mb-28">

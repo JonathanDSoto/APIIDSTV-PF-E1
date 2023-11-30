@@ -13,9 +13,6 @@ import Clientes from './pages/Clientes';
 import Inicio from './pages/Inicio';
 
 import MakeOrder from './pages/MakeOrder';
-import Productos from './pages/Productos';
-import EditInventory from './pages/EditInventory';
-
 
 
 export default function App() {
@@ -34,14 +31,7 @@ export default function App() {
       <Route path="/inventario" element={<Inventario/>}/>
 
       <Route path="/makeorder" element={<MakeOrder/>}/>
-      <Route path="/productos" element={<Productos/>}/>
       <Route path="/clientes" element={<Clientes/>}/>
-      <Route path="/editinventory" element={<EditInventory/>}/>
-
-      
-
-
-  
 
     </Routes>
     
