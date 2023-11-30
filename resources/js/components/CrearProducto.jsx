@@ -11,13 +11,14 @@ const ModalInv = ({ isOpen, onClose }) => {
     const [tipoProducto, setTipoProducto] = useState("");
     const [unidadMedida, setUnidadMedida] = useState("");
     const [cantidad, setCantidad] = useState(0);
+    const [cantidadMinima, setCantidadMinima] = useState(0);
 
     const create = async (e) => {
         e.preventDefault();
 
-        console.log("Sending data:", { nombre: name, tipo: tipoProducto, unidad_medida: unidadMedida, cantidad: cantidad});
+        console.log("Sending data:", { nombre: name, tipo: tipoProducto, unidad_medida: unidadMedida, cantidad: cantidad, cantidad_minima: cantidadMinima});
 
-        await axios.post(endpoint, { nombre: name, tipo: tipoProducto, unidad_medida: unidadMedida, cantidad: cantidad});
+        await axios.post(endpoint, { nombre: name, tipo: tipoProducto, unidad_medida: unidadMedida, cantidad: cantidad, cantidad_minima: cantidadMinima});
         onClose();
         window.location.reload();
     }
@@ -99,6 +100,8 @@ const ModalInv = ({ isOpen, onClose }) => {
                             Cantidad minima
                         </label>
                         <input
+                            value={cantidadMinima}
+                            onChange={(e) => setCantidadMinima(e.target.value)}
                             type="number"
                             id="nuevoElemento"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

@@ -104,10 +104,10 @@ export default function Inventario() {
                                     </th>
                                     <td className="px-6 py-4">{producto.cantidad} {producto.unidad_medida}</td>
                                     <td className="px-6 py-4">{producto.tipo}</td>
-                                    <td className="px-6 py-4">{cantidadMinima} {producto.unidad_medida}</td>
+                                    <td className="px-6 py-4">{producto.cantidad_minima} {producto.unidad_medida}</td>
                                     <td className="px-6 py-4">
                                         {
-                                            producto.cantidad < cantidadMinima ? (
+                                            producto.cantidad < producto.cantidad_minima ? (
                                                 <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
                                                     Agotado
                                                 </span>
