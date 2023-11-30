@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Responses\ApiResponse;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\ValidationException;
 use Exception;
 
 class UseController extends Controller
@@ -32,7 +30,7 @@ class UseController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'name' => 'required|string',
+                'name' => 'required|string|min:3|max:20',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|string|min:8'    
             ]);
@@ -41,7 +39,7 @@ class UseController extends Controller
             $user = User::create($request->all());
             return ApiResponse::success("Usuario creado exitosamente", 201, $user);
         } catch(Exception $e){
-            return ApiResponse::error("Error al crear el platillo: ",422);
+            return ApiResponse::error("Error al crear el usuario: ",422);
         }
     }
 

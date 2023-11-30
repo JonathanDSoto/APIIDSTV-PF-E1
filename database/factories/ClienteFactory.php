@@ -19,8 +19,7 @@ class ClienteFactory extends Factory
         return [
             'nombre' => $this->faker->name(),
             'apellido' => $this->faker->lastName(),
-            'email' => $this->faker->email(),
-            'password' => $this->faker->password(),
+            'email' => $this->faker->firstName() . '@gmail.com',
             'telefono' => $this->faker->numerify('##########'),
         ];
     }
