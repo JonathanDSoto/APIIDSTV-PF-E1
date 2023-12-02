@@ -33,8 +33,8 @@ class InventarioController extends Controller
         try {
             $request->validate([
                 'nombre' => 'required|unique:inventarios|string|max:50|min:3',
-                'cantidad' => 'required|numeric|min:1',
-                'cantidad_minima' => 'required|numeric|min:1',
+                'cantidad' => 'required|numeric|gt:0',
+                'cantidad_minima' => 'required|numeric|gt:0',
                 'tipo' => 'required|in:Pescado,Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento,Crustáceo|string|max:100',
                 'unidad_medida' => 'required|in:Litros,Kilogramos,Gramos|string|max:10|min:5'
             ]);
@@ -67,8 +67,8 @@ class InventarioController extends Controller
             $inventario = Inventario::findOrFail($id);
             $request->validate([
                 'nombre' => 'required|unique:inventarios|string|max:50|min:3' . $request->id,
-                'cantidad' => 'required|numeric|min:1',
-                'cantidad_minima' => 'required|numeric|min:1',
+                'cantidad' => 'required|numeric|gt:0',
+                'cantidad_minima' => 'required|numeric|gt:0',
                 'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento|string|max:100',
                 'unidad_medida' => 'required|in:Litros,Kilogramos,Gramos|string|max:10|min:3'
             ]);
