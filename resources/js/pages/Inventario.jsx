@@ -9,24 +9,123 @@ import { useState, useEffect } from "react";
 
 export default function Inventario() {
   
-    const [cantidadMinima, setCantidadMinima] = useState(7);
+    const [cantidadMinima, setCantidadMinima] = useState(1);
 
     const [productos, setProductos] = useState([]);
 
-    useEffect(() => {
-        useFetch("inventarios").then((data) => setProductos(data));
-    }, []);
 
-    const deleteProducto = async (id) => {
+    const [measureUnitOption, setMeasureUnitOption] = useState('Gramos'); 
+    const [measureUnitCant, setMeasureUnitCant] = useState('Gramos');
+    const [measureUnitMin, setMeasureUnitMin] = useState('Gramos');
+
+    useEffect(() => {
+        fetchData();
+    }, []);  // Initial data fetch
+    
+    const fetchData = async () => {
         try {
-            await deleteData("inventarios", id);
-            const data = await useFetch("inventarios");
-            
-            setProductos(data);
+            const fetchedData = await useFetch("inventarios");
+
+        // TEST
+        // Set measure units based on fetched data
+        const hasKilograms = fetchedData.some((producto) => producto.unidad_medida === 'Kilogramos');
+        const hasLitros = fetchedData.some((producto) => producto.unidad_medida === 'Litros');
+        const hasGramos = fetchedData.some((producto) => producto.unidad_medida === 'Gramos');
+
+        if (hasKilograms) setMeasureUnitOption('Kilogramos');
+        else if (hasLitros) setMeasureUnitOption('Litros');
+        else if (hasGramos) setMeasureUnitOption('Gramos');
+
+        // Save the measure units for cantidad and cantidad_minima
+        setMeasureUnitCant(hasGramos ? 'Gramos' : 'Kilogramos');
+        setMeasureUnitMin(hasGramos ? 'Gramos' : 'Kilogramos');
+    
+            // Process and set modified data
+            processAndSetData(fetchedData);
         } catch (error) {
             console.error(error);
         }
     };
+    
+    const processAndSetData = (data) => {
+        // Remove trailing 0s
+        const modifiedData = data.map(producto => ({
+            ...producto,
+            cantidad: parseFloat(producto.cantidad),
+            cantidad_minima: parseFloat(producto.cantidad_minima),
+        }));
+    
+        // Set modified data to state
+        setProductos(modifiedData);
+    
+        // CONVERSIONS
+        // Turn g to kg in cantidad
+        if (modifiedData.some((producto) => producto.unidad_medida === 'Gramos' && producto.cantidad >= 1000)) {
+            setMeasureUnitOption('Kilogramos');
+        }
+        // Turn g to kg in cantidad minima
+        if (modifiedData.some((producto) => producto.unidad_medida === 'Gramos' && producto.cantidad_minima >= 1000)) {
+            setMeasureUnitOption('Kilogramos');
+        }
+        // TODO verify
+        // Turn kg to g in cantidad
+        if (modifiedData.some((producto) => producto.unidad_medida === 'Kilogramos' && producto.cantidad < 1)) {
+            setMeasureUnitOption('Gramos');
+        }
+
+        if (modifiedData.some((producto) => producto.unidad_medida === 'Kilogramos' && producto.cantidad_minima < 1)) {
+            setMeasureUnitOption('Gramos');
+        }
+    
+        // Print modified data
+        console.log("Modified data after trim:", modifiedData);
+    };
+    
+    const deleteProducto = async (id) => {
+        try {
+            await deleteData("inventarios", id);
+            // Re-fetch data after deletion
+            fetchData();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
+
+    let showCantidadRes, showCantidadMinRes;
+    // Unit conversion functions
+    const showCantidad = (producto) => {
+        switch (true) {
+            // g to kg
+            case producto.unidad_medida === 'Gramos' && producto.cantidad >= 1000:
+                return `${(producto.cantidad / 1000)} Kilogramos`;
+            // kg to g
+            case producto.unidad_medida === 'Kilogramos' && producto.cantidad < 1:
+                if (measureUnitOption !== 'Gramos') {
+                    setMeasureUnitOption('Gramos');
+                }
+                return `${producto.cantidad * 1000} Gramos`;
+            default:
+                return `${producto.cantidad} ${producto.unidad_medida}`;
+        }
+    };
+
+    const showCantidadMin = (producto) => {
+        switch (true) {
+            // g to kg
+            case producto.unidad_medida === 'Gramos' && producto.cantidad_minima >= 1000:
+                return `${(producto.cantidad_minima / 1000)} Kilogramos`;
+            // kg to g
+            case producto.unidad_medida === 'Kilogramos' && producto.cantidad_minima < 1:
+                if (measureUnitOption !== 'Gramos') {
+                    setMeasureUnitOption('Gramos');
+                }
+                return `${producto.cantidad_minima * 1000} Gramos`;
+            default:
+                return `${producto.cantidad_minima} ${producto.unidad_medida}`;
+        }
+    };
+    
 
     const [agregarModalOpen, setAgregarModalOpen] = useState(false);
 
@@ -91,8 +190,7 @@ export default function Inventario() {
                                 </tr>
                             </thead>
                             <tbody>
-                              { productos.map((producto, id) => (
-
+                                { productos.map((producto, id) => (
                                 <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
                                     <th
                                         scope="row"
@@ -102,12 +200,17 @@ export default function Inventario() {
                                             {producto.nombre}
                                         </div>
                                     </th>
-                                    <td className="px-6 py-4">{producto.cantidad} {producto.unidad_medida}</td>
+                                    <td className="px-6 py-4">
+                                        {showCantidad(producto)}
+                                    </td>
                                     <td className="px-6 py-4">{producto.tipo}</td>
-                                    <td className="px-6 py-4">{producto.cantidad_minima} {producto.unidad_medida}</td>
+                                    <td className="px-6 py-4">
+                                    {showCantidadMin(producto)}
+                                    </td>
                                     <td className="px-6 py-4">
                                         {
-                                            producto.cantidad < producto.cantidad_minima ? (
+                                            producto.cantidad * (measureUnitCant === 'Kilogramos' ? 1000 : 1) <
+                                            producto.cantidad_minima * (measureUnitMin === 'Kilogramos' ? 1000 : 1) ? (
                                                 <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
                                                     Agotado
                                                 </span>
@@ -118,6 +221,7 @@ export default function Inventario() {
                                             )
                                         }
                                     </td>
+
                                     <td className="px-6 py-4">
                                     <button
                                                 className="rounded-md font-bold border hover:bg-yellow-700 border-yellow-700 bg-yellow-500 text-white py-1 px-3 mr-2"
