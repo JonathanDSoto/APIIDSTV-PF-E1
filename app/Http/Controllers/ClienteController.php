@@ -32,18 +32,15 @@ class ClienteController extends Controller
     {   
         try {
             $request->validate([
-                'nombre' => 'required|string|max:50',
-                'apellido' => 'string|max:50',
-                'email' => 'required|unique:clientes|string|max:100',
-                'password' => 'required|string|max:255',
-                'telefono' => 'string|max:10',
+                'nombre' => 'required|string|max:50|min:3',
+                'apellido' => 'string|max:100|min:3',
+                'email' => 'required|string|max:100|email|regex:/^.+@.+$/i|unique:clientes,email,',
+                'telefono' => 'required|numeric|max:9999999999|min:1000000000|unique:clientes,telefono',
             ]);
             $cliente = Cliente::create($request->all());
             return ApiResponse::success("Cliente creado exitosamente", 201, $cliente);
-        } catch(ValidationException $errors){
-            return ApiResponse::error("Error al crear el cliente: ",422, $errors);
-        } catch (Exception $e) {
-            return ApiResponse::error('Cliente no creado: ' .$e->getMessage(), 500);
+        } catch(ValidationException $e){
+            return ApiResponse::error('Error al crear el cliente: ' .$e->getMessage(), 422);
         }
     }   
 
@@ -69,19 +66,17 @@ class ClienteController extends Controller
             $cliente = Cliente::findOrFail($id);
             $request->validate([
                 'nombre' => 'required|string|max:50' . $cliente->id,
-                'apellido' => 'string|max:50',
-                'email' => 'required|string|max:100',
-                'password' => 'required|string|max:255',
-                'telefono' => 'string|max:10',
+                'apellido' => 'string|max:100|min:3',
+                'email' => 'required|string|max:100|email|regex:/^.+@.+$/i|unique:clientes,email,' . $cliente->id,
+                'telefono' => 'required|numeric|max:9999999999|min:1000000000|unique:clientes,telefono,' . $cliente->id,
             ]);
             $cliente->update($request->all());
             return ApiResponse::success("Cliente actualizado exitosamente", 200, $cliente);
-        } catch(ValidationException $errors){
-            return ApiResponse::error("Error al actualizar el cliente: ",422, $errors);
-        } catch (Exception $e) {
-            return ApiResponse::error('Cliente no actualizado: ' .$e->getMessage(), 500);
+        }  catch(ValidationException $e){
+            return ApiResponse::error('Error al actualizar el cliente: ' .$e->getMessage(), 422);
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -93,7 +88,7 @@ class ClienteController extends Controller
             $cliente->delete();
             return ApiResponse::success("Cliente eliminado exitosamente", 200, $cliente);
         } catch (Exception $e) {
-            return ApiResponse::error('Cliente no encontrado: ' .$e->getMessage(), 500);
+            return ApiResponse::error('Cliente no encontrado: ' .$e->getMessage(), 404);
         }
     }
 }

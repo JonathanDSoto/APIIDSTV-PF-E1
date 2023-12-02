@@ -1,186 +1,174 @@
-import React from 'react';
-import Layout from '../layouts/Layout';
-import NavbarInv from '../components/NabvarInv';
-import AgregarModal from '../components/ModalInv'
-import { useState,useEffect } from 'react';
+import React from "react";
+import Layout from "../layouts/Layout";
+import NavbarInv from "../components/NabvarInv";
+import AgregarModal from "../components/CrearProducto";
+import Swal from "sweetalert2";
+import useFetch from "../hooks/useFetch";
+import deleteData from "../hooks/DeleteButton";
+import { useState, useEffect } from "react";
+
 export default function Inventario() {
-  const [showAlert, setShowAlert] = useState(false);
+  
+    const [cantidadMinima, setCantidadMinima] = useState(7);
 
-  const handleAlert = () => {
-    setShowAlert(true);
-  };
+    const [productos, setProductos] = useState([]);
 
-  useEffect(() => {
-    let timeout;
-    if (showAlert) {
-      timeout = setTimeout(() => {
-        setShowAlert(false);
-      }, 2000); // Cambia este valor (en milisegundos) para ajustar la duración de la alerta
-    }
+    useEffect(() => {
+        useFetch("inventarios").then((data) => setProductos(data));
+    }, []);
 
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [showAlert]);
-
-
-  const handleEdit = () => {
-    // Lógica para editar
-  };
-
-  const handleDelete = () => {
-    // Lógica para eliminar
-  };
-
-  const [agregarModalOpen, setAgregarModalOpen] = useState(false);
-
-  const openAgregarModal = () => {
-    setAgregarModalOpen(true);
-  };
-
-  const closeAgregarModal = () => {
-    setAgregarModalOpen(false);
-  };
-
-
-
-
-  useEffect(() => {
-    let timeout;
-    if (showAlert) {
-      timeout = setTimeout(() => {
-        setShowAlert(false);
-      }, 2000); // Cambia este valor (en milisegundos) para ajustar la duración de la alerta
-    }
-
-
-  return () => {
-    clearTimeout(timeout);
-  };
-}, [showAlert]);
-
-  return (
-    <Layout>
-      <div className='overflow-scroll'>
-
-        <NavbarInv section="Modulo de inventario" addBtn="Agregar producto" />
-        <main className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center  -mb-28'>
-        <div className="relative overflow-x-auto mt-20">
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-          <th scope="col" className="px-6 py-3 text-center">
-            Producto
-          </th>
-          <th scope="col" className="px-6 py-3 text-center">
-            Cantidad
-          </th>
-          <th scope="col" className="px-6 py-3 text-center">
-           Tipo
-          </th>
-          
-          <th scope="col" className="px-6 py-3 text-center">
-            Cantidad mínima
-          </th>
-          <th scope="col" className="px-6 py-3 text-center">
-            Estado
-          </th>
-
-          
-          <th scope="col" className="px-6 py-3 text-center">
-            Acciones
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
-          <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <div className="flex items-center">
-             
-              s
-            </div>
-          </th>
-          <td className="px-6 py-4">s</td>
-          <td className="px-6 py-4">s</td>
-          <td className="px-6 py-4">s</td>
-          <td className="lg:flex items-center">
-            <button style={{ fontSize: '1.2rem' }} className={`mr-1 mt-4`}>
-              s
-            </button>
-          </td>
-          <td className="px-6 py-4">
-            <button
-              className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3 mr-2"
-              onClick={openAgregarModal}
-            >
-              Editar
-            </button>
-            <button
-  className="rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
-  type="button"
-  onClick={() => {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
-      },
-      buttonsStyling: false
-    });
-    
-
-    const swalWithColorText = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success  text-black',
-        cancelButton: 'btn btn-danger text-black',
-        content: 'text-blue-500',
-        title: 'text-black', 
-        footer: 'text-red-500'
-      },
-      buttonsStyling: false
-    });
-    
-    swalWithColorText.fire({
-      title: '¿Estás seguro?',
-      text: '¡No podrás revertir esto!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminarlo',
-      cancelButtonText: 'No, cancelar',
-      reverseButtons: true
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire({
-            title: '¡Eliminado!',
-            text: 'Este modulo ha sido eliminado.',
-            icon: 'success'
-          });
-          // Aquí puedes colocar la lógica para eliminar el elemento
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swalWithBootstrapButtons.fire({
-            title: 'Cancelado',
-            text: 'Modulo a salvo',
-            icon: 'error'
-          });
-          // Aquí puedes agregar alguna lógica adicional en caso de cancelación
+    const deleteProducto = async (id) => {
+        try {
+            await deleteData("inventarios", id);
+            const data = await useFetch("inventarios");
+            
+            setProductos(data);
+        } catch (error) {
+            console.error(error);
         }
-      });
-  }}
->
-  Eliminar
-</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <AgregarModal isOpen={agregarModalOpen} onClose={closeAgregarModal} />
-  </div>
-          
+    };
 
-        </main>
-      </div>
-    </Layout>
-  );
+    const [agregarModalOpen, setAgregarModalOpen] = useState(false);
+
+    const openAgregarModal = () => {
+        setAgregarModalOpen(true);
+    };
+
+    const closeAgregarModal = () => {
+        setAgregarModalOpen(false);
+    };
+
+    return (
+        <Layout>
+            <div className="overflow-scroll">
+                <NavbarInv
+                    section="Módulo de inventario"
+                    addBtn="Agregar producto"
+                />
+                <main className="h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center  -mb-28">
+                    <div className="relative overflow-x-auto mt-20">
+                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-center"
+                                    >
+                                        Producto
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-center"
+                                    >
+                                        Cantidad
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-center"
+                                    >
+                                        Tipo
+                                    </th>
+
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-center"
+                                    >
+                                        Cantidad mínima
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-center"
+                                    >
+                                        Estado
+                                    </th>
+
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-center"
+                                    >
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              { productos.map((producto, id) => (
+
+                                <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                                    <th
+                                        scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    >
+                                        <div className="flex items-center">
+                                            {producto.nombre}
+                                        </div>
+                                    </th>
+                                    <td className="px-6 py-4">{producto.cantidad} {producto.unidad_medida}</td>
+                                    <td className="px-6 py-4">{producto.tipo}</td>
+                                    <td className="px-6 py-4">{producto.cantidad_minima} {producto.unidad_medida}</td>
+                                    <td className="px-6 py-4">
+                                        {
+                                            producto.cantidad < producto.cantidad_minima ? (
+                                                <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                                    Agotado
+                                                </span>
+                                            ) : (
+                                                <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                                    Disponible
+                                                </span>
+                                            )
+                                        }
+                                    </td>
+                                    <td className="px-6 py-4">
+                                    <button
+                                                className="rounded-md font-bold border hover:bg-yellow-700 border-yellow-700 bg-yellow-500 text-white py-1 px-3 mr-2"
+                                                onClick={openAgregarModal}
+                                            >
+                                                Editar
+                                            </button>
+                                            <button
+                                                className="rounded-md font-bold border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
+                                                onClick={() =>
+                                                    Swal.fire({
+                                                        title:
+                                                            "¿Estás seguro?",
+                                                        text:
+                                                            "No podrás revertir esto",
+                                                        icon: "warning",
+                                                        showCancelButton: true,
+                                                        confirmButtonColor:
+                                                            "#3085d6",
+                                                        cancelButtonColor:
+                                                            "#d33",
+                                                        confirmButtonText:
+                                                            "Sí, eliminar",
+                                                        cancelButtonText:
+                                                            "Cancelar",
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            deleteProducto(producto.id);
+                                                            Swal.fire(
+                                                                "Eliminado",
+                                                                "El registro ha sido eliminado",
+                                                                "success"
+                                                            );
+                                                        }
+                                                    })
+                                                }
+                                            >
+                                                Eliminar
+                                            </button>
+                                    </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                        </table>
+                        <AgregarModal
+                            isOpen={agregarModalOpen}
+                            onClose={closeAgregarModal}
+                        />
+                    </div>
+                </main>
+            </div>
+        </Layout>
+    );
 }
-
