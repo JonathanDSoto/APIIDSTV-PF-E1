@@ -59,19 +59,19 @@ export default function CardHome({ name, comidas, description,description2, opti
 
   return (
     
-    <div className="bg-slate-500 shadow-md rounded-3xl mb-96 p-2 mx-2 flex flex-col">
-      <div className="flex items-center">
+    <div className="bg-slate-500 shadow-md rounded-2xl mb-64 mx-5 p-10 flex flex-col max-w-md">
+      <div className="flex items-center flex-col">
         <img
           src={comidas}
           alt="Sushi de Pollo"
-          className="w-32 justify-center mt-5 object-cover rounded-2xl mb-2 mr-12"
+          className="w-full max-h-60 object-cover rounded-2xl"
         />
-        <div className="flex-grow">
+        <div className="flex-grow mt-3 text-center">
           <div className="text-xs text-blue-700 font-medium">{option}</div>
           
           <h2 style={{ fontSize: '2.0rem' }} className="font-medium">{name}</h2>
           <div className="lg:flex items-center">
-            <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{description}</button>
+            <a style={{ fontSize: '1.4rem' }} className={`mr-1 ${descriptionColor}`}>{description}</a>
           </div>
           <div className="lg:flex items-center">
             <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{description2}</button>
@@ -85,9 +85,9 @@ export default function CardHome({ name, comidas, description,description2, opti
           <div className="lg:flex items-center">
             <button style={{ fontSize: '1.2rem' }} className={`mr-1 ${descriptionColor}`}>{price}</button>
           </div>
-          <div className="text-xs text-lime-500 font-medium">{conxt}</div>
-          <div className="text-xs text-black font-medium">{conxt2}</div>
-          <div className="flex space-x-3 text-sm font-medium mt-2">
+          <div className="text-md text-black font-medium">{conxt}</div>
+          <div className="text-md text-black font-medium">{conxt2}</div>
+          <div className="flex justify-center space-x-3 text-md font-semibold mt-10">
             
             
 

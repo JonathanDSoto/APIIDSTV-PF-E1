@@ -8,7 +8,7 @@ export default function Login() {
                 <div className="lg-inner-column">
                     <div className="left-columns lg:w-1/2 lg:block hidden">
                         <div className="logo-box-3">
-                            <a href="index.html" className="w-full">
+                            <a className="w-full">
                                 <img src="/Example.jpg" className='invert-0' alt=""/>
                             </a>
                         </div>
@@ -16,7 +16,7 @@ export default function Login() {
                     <div className="lg:w-1/2 w-full flex flex-col items-center justify-center">
                         <div className="auth-box-3  border border-gray-300 ">
                             <div className="mobile-logo text-center mb-3 lg:hidden block">
-                                <a href="index.html">
+                                <a>
                                     <img src="/Example.jpg" alt="" className=" w-20 mx-auto mb-5 dark_logo" />
                                 </a>
                             </div>
