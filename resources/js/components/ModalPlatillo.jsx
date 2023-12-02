@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
 
 const ModalPlatillo = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
+
+
+    const [arroz, setArroz] = useState(0);
+    const [camaron, setCamaron] = useState(0);
+    const [alga, setAlga] = useState(0);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,29 +31,10 @@ const ModalPlatillo = ({ isOpen, onClose }) => {
                         <input
                             type="text"
                             id="nuevoElemento"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
                             placeholder="Ingresar"
                             required
                         />
-
-
-
-               
-
-
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Ingredientes </label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option className='text-black' selected="">Seleccionar</option>
-                            <option className='text-black' value="RS">Aguacate</option>
-                            <option className='text-black' value="Ll">Camaron</option>
-                            <option className='text-black' value="DM">Arroz</option>
-                            
-                        </select>
-                    </div>
-
-                    
-
 
                         <label htmlFor="nuevoElemento" className="block mb-2 text-sm font-medium text-gray-900">
                             Precio
@@ -56,7 +42,45 @@ const ModalPlatillo = ({ isOpen, onClose }) => {
                         <input
                             type="number"
                             id="nuevoElemento"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
+                            placeholder= "Ingresar precio"
+                            required
+                        />
+
+                        {/*test for ingredients - TODO: Add all ingredients*/}
+                        <label htmlFor="arroz" className="block mb-2 text-sm font-medium text-gray-900">
+                            Arroz
+                        </label>
+                        <input
+                            value={arroz}
+                            onChange={(e) => setArroz(e.target.value)}
+                            type="number"
+                            id="arroz"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
+                            placeholder="Ingresar cantidad arroz"
+                            required
+                        />
+                        <label htmlFor="camaron" className="block mb-2 text-sm font-medium text-gray-900">
+                            Camarón
+                        </label>
+                        <input
+                            value={camaron}
+                            onChange={(e) => setCamaron(e.target.value)}
+                            type="number"
+                            id="camaron"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
+                            placeholder="Ingresar cantidad camarón"
+                            required
+                        />
+                        <label htmlFor="alga" className="block mb-2 text-sm font-medium text-gray-900">
+                            Alga nori
+                        </label>
+                        <input
+                            value={alga}
+                            onChange={(e) => setAlga(e.target.value)}
+                            type="number"
+                            id="nuevoElemento"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
                             placeholder="Ingresar"
                             required
                         />
