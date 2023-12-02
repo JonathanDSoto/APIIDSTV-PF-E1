@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 const endpoint = "http://localhost:8000/api/clientes";
 
@@ -11,7 +12,7 @@ const CrearCliente = ({ isOpen, onClose }) => {
     const [phone, setPhone] = useState(0);
     const [email, setEmail] = useState("");
 
-    //TODO validate name, phone, email, password
+    //  Validation  
     const [isNameValid, setisNameValid] = useState(false);
     const [isPhoneValid, setisPhoneValid] = useState(false);
     const [isEmailValid, setisEmailValid] = useState(false);
@@ -48,10 +49,21 @@ const CrearCliente = ({ isOpen, onClose }) => {
 
         console.log("Sending data:", { nombre: name, telefono: phone, email: email });
 
+    try{
         await axios.post(endpoint, { nombre: name, telefono: phone, email: email });
         onClose();
         window.location.reload();
+    } catch (error) {
+        console.error("Error:", error);
+
+        // alert
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Verifique que la entrada sea única y los datos sean correctos.',
+        });
     }
+}
 
     return (
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
