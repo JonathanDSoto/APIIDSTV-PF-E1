@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 
-export default function CardHome({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint }) {
+export default function CardHome({ name, comidas, description,description2, option, price, conxt, conxt2,boton, checkpoint,  index=1 }) {
+  const cardColors = ["bg-red-500", "bg-green-500", "bg-yellow-500"];
+  const cardIndex = index;
+  const cardColorClass = cardColors[cardIndex % cardColors.length];
   let descriptionColor, descriptionColor2;
-
+  
   switch (description) {
     case 'Agotado':
       descriptionColor = 'text-red-700';
@@ -46,7 +49,7 @@ export default function CardHome({ name, comidas, description,description2, opti
     if (showAlert) {
       timeout = setTimeout(() => {
         setShowAlert(false);
-      }, 2000); // Cambia este valor (en milisegundos) para ajustar la duración de la alerta
+      }, 2000); 
     }
 
 
@@ -59,7 +62,7 @@ export default function CardHome({ name, comidas, description,description2, opti
 
   return (
     
-    <div className="bg-slate-500 shadow-md rounded-2xl mb-64 mx-5 p-10 flex flex-col max-w-md">
+    <div className={`${cardColorClass} shadow-md rounded-2xl mb-60 mx-4 p-7 flex flex-col max-w-md`}>
       <div className="flex items-center flex-col">
         <img
           src={comidas}
