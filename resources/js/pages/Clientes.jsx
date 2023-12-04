@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../layouts/Layout";
-import AgregarModal from "../components/ModalClient";
 import NavbarClient from "../components/NavbarClient";
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
@@ -26,15 +25,6 @@ export default function Clientes() {
         }
     };
 
-    const [agregarModalOpen, setAgregarModalOpen] = useState(false);
-
-    const openAgregarModal = () => {
-        setAgregarModalOpen(true);
-    };
-
-    const closeAgregarModal = () => {
-        setAgregarModalOpen(false);
-    };
     return (
         <Layout>
             <div className="overflow-scroll">
@@ -104,7 +94,10 @@ export default function Clientes() {
                                         <td className="px-6 py-4">
                                             <button
                                                 className="rounded-md font-bold border hover:bg-yellow-700 border-yellow-700 bg-yellow-500 text-white py-1 px-3 mr-2"
-                                                onClick={openAgregarModal}
+                                                onClick={() => {
+                                                    window.location.href = `/cliente/${cliente.id}`;
+                                                }
+                                                }
                                             >
                                                 Editar
                                             </button>
@@ -145,10 +138,6 @@ export default function Clientes() {
                                 ))}
                             </tbody>
                         </table>
-                        <AgregarModal
-                            isOpen={agregarModalOpen}
-                            onClose={closeAgregarModal}
-                        />
                     </div>
                 </main>
             </div>
