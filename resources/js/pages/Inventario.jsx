@@ -9,10 +9,7 @@ import { useState, useEffect } from "react";
 
 export default function Inventario() {
   
-    const [cantidadMinima, setCantidadMinima] = useState(1);
-
     const [productos, setProductos] = useState([]);
-
 
     const [measureUnitOption, setMeasureUnitOption] = useState('Gramos'); 
     const [measureUnitCant, setMeasureUnitCant] = useState('Gramos');
@@ -20,14 +17,12 @@ export default function Inventario() {
 
     useEffect(() => {
         fetchData();
-    }, []);  // Initial data fetch
+    }, []); 
     
     const fetchData = async () => {
         try {
             const fetchedData = await useFetch("inventarios");
 
-        // TEST
-        // Set measure units based on fetched data
         const hasKilograms = fetchedData.some((producto) => producto.unidad_medida === 'Kilogramos');
         const hasLitros = fetchedData.some((producto) => producto.unidad_medida === 'Litros');
         const hasGramos = fetchedData.some((producto) => producto.unidad_medida === 'Gramos');
@@ -36,11 +31,9 @@ export default function Inventario() {
         else if (hasLitros) setMeasureUnitOption('Litros');
         else if (hasGramos) setMeasureUnitOption('Gramos');
 
-        // Save the measure units for cantidad and cantidad_minima
         setMeasureUnitCant(hasGramos ? 'Gramos' : 'Kilogramos');
         setMeasureUnitMin(hasGramos ? 'Gramos' : 'Kilogramos');
     
-            // Process and set modified data
             processAndSetData(fetchedData);
         } catch (error) {
             console.error(error);
@@ -126,17 +119,6 @@ export default function Inventario() {
         }
     };
     
-
-    const [agregarModalOpen, setAgregarModalOpen] = useState(false);
-
-    const openAgregarModal = () => {
-        setAgregarModalOpen(true);
-    };
-
-    const closeAgregarModal = () => {
-        setAgregarModalOpen(false);
-    };
-
     return (
         <Layout>
             <div className="overflow-scroll">
@@ -225,7 +207,11 @@ export default function Inventario() {
                                     <td className="px-6 py-4">
                                     <button
                                                 className="rounded-md font-bold border hover:bg-yellow-700 border-yellow-700 bg-yellow-500 text-white py-1 px-3 mr-2"
-                                                onClick={openAgregarModal}
+                                                onClick={() => {
+                                                    window.location.href = `/producto/${producto.id}`;
+                                                }
+                                                }
+                                                    
                                             >
                                                 Editar
                                             </button>
@@ -266,10 +252,6 @@ export default function Inventario() {
                               ))}
                             </tbody>
                         </table>
-                        <AgregarModal
-                            isOpen={agregarModalOpen}
-                            onClose={closeAgregarModal}
-                        />
                     </div>
                 </main>
             </div>
