@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../layouts/Layout";
-import NavbarInv from "../components/NabvarInv";
+import NavbarInv from "../components/NavbarInv";
 import AgregarModal from "../components/CrearProducto";
 import Swal from "sweetalert2";
 import useFetch from "../hooks/useFetch";

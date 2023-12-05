@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AgregarModal from './CrearProducto';
 
-export default function NavbarInv({ isOpen, onClose, children, section, addBtn }) {
+export default function NavbarInv({section}) {
   const [agregarModalOpen, setAgregarModalOpen] = useState(false);
 
   const openAgregarModal = () => {

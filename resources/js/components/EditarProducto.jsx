@@ -3,7 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../layouts/Layout';
-import NavbarInv from './NabvarInv';
+import NavbarInv from './NavbarInv';
 
 const endpoint = "http://localhost:8000/api/inventarios/";
 
