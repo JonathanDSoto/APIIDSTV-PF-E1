@@ -1,31 +1,40 @@
-import React from 'react';
-import Sidebar from '../components/Sidebar';
-import Card from '../components/Card';
-import Navbar from '../components/Navbar';
-import Layout from '../layouts/Layout';
-
+import React, { useState, useEffect } from "react";
+import Card from "../components/Card";
+import Navbar from "../components/Navbar";
+import Layout from "../layouts/Layout";
+import axios from "axios";
 
 export default function Platillos() {
-  return (
-    <Layout>
-    <div className='overflow-scroll'>
-    <Navbar section="Modulo de platillos" addBtn="Agregar" />
-      <main
-        className='h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center gap-4 -mb-28'
-        
-      >
-        <Card name="California" comidas={"california.jpg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Mar y Tierra" comidas={"Sushi1.png"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Gohan" comidas={"Sushi1.png"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Milenia Roll" comidas={"milenia.jpeg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <Card name="Queso Roll" comidas={"queso.jpg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-      
-        <Card name="California" comidas={"california.jpg"} price="$130.50" conxt="Ingredientes: Arroz, Surimi, Aguacate, Camaron, Cangrejo, Alga" />
-        <br />
-        <br />
-      </main>
-    </div>
-    </Layout>
-  );
-}
+    const [platillo, setPlatillo] = useState([]);
 
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/platillos")
+            .then((response) => {
+                setPlatillo(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+            
+    }, []);
+
+    return (
+        <Layout>
+            <div className="overflow-y-scroll h-screen">
+                <Navbar section="Modulo de platillos" addBtn="Agregar" />
+                <main className="mt-10 md:flex md:flex-wrap md:justify-center gap-8 -mb-28">
+                    {platillo &&
+                        platillo.map((platillo) => (
+                            <Card
+                                key={platillo.id}
+                                name={platillo.nombre}
+                                comidas={platillo.imagen_path}
+                                price={platillo.precio}
+                                conxt={platillo.descripcion}
+                            />
+                        ))}
+                </main>
+            </div>
+        </Layout>
+    );
+}
