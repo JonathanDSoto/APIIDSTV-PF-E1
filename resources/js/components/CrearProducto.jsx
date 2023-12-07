@@ -47,9 +47,7 @@ const ModalInv = ({ isOpen, onClose }) => {
 
     const create = async (e) => {
         e.preventDefault();
-    
-        console.log("Sending data:", { nombre: name, tipo: tipoProducto, unidad_medida: unidadMedida, cantidad: cantidad, cantidad_minima: cantidadMinima});
-        
+            
         try {
             await axios.post(endpoint, { nombre: name, tipo: tipoProducto, unidad_medida: unidadMedida, cantidad: cantidad, cantidad_minima: cantidadMinima});
             onClose();
