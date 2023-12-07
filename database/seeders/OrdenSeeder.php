@@ -11,6 +11,6 @@ class OrdenSeeder extends Seeder
      */
     public function run(): void
     {
-        Orden::factory(5)->create();
+        Orden::factory(9)->create();
     }
 }
