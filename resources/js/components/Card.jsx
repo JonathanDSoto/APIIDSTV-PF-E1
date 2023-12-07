@@ -7,14 +7,14 @@ export default function Card({
     conxt,
 }) {
     return (
-        <div className="bg-[#333333] shadow-md rounded-2xl mb-8 p-4 flex ">
+        <div className="bg-[#333333] shadow-md max-h-[450px] rounded-2xl mb-2 p-4 flex ">
             <div className="flex items-center flex-col">
                 <img
                     src={comidas}
                     alt="comidas"
                     className="w-40 h-40 rounded-full mb-4"
                 />
-                <div className="flex-grow">
+                <div className="h-40">
                     <h2 style={{ fontSize: "1.3rem", whiteSpace: "wrap", maxWidth: "250px", maxHeight: "150px", overflow: "hidden", textOverflow: "ellipsis" }}  className="font-bold text-white overflow-clip" title={name}>
                         {name}
                     </h2>
@@ -27,7 +27,7 @@ export default function Card({
                             ${price}
                         </p>
                     </div>
-                    <div style={{ fontSize: "1rem", whiteSpace: "wrap", maxWidth: "250px", maxHeight: "30px", overflow: "hidden", textOverflow: "ellipsis" }} className="text-xs text-slate-300 font-light">
+                    <div style={{ fontSize: "1rem", whiteSpace: "wrap", maxWidth: "250px", overflow: "clip", textOverflow: "ellipsis" }} className="text-xs text-slate-300 h-9 font-light">
                         {conxt}
                     </div>                    
                     <div className="flex justify-center text-md font-semibold mt-10">

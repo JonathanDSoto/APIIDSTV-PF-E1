@@ -121,12 +121,12 @@ export default function Inventario() {
     
     return (
         <Layout>
-            <div className="overflow-scroll">
+            <div className="overflow-y-scroll">
                 <NavbarInv
                     section="Módulo de inventario"
                     addBtn="Agregar producto"
                 />
-                <main className="h-screen mt-10 grid grid-cols-1 md:flex md:flex-wrap md:justify-center  -mb-28">
+                <main className="h-screen mt-3 grid grid-cols-1 md:flex md:flex-wrap md:justify-center  -mb-28">
                     <div className="relative overflow-x-auto mt-20">
                         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

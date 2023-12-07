@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AgregarModal from './ModalPlatillo';
+import CrearPlatillo from './CrearPlatillo';
 
 export default function NavbarInv({ isOpen, onClose, children, section, addBtn }) {
   const [agregarModalOpen, setAgregarModalOpen] = useState(false);
@@ -26,8 +26,7 @@ export default function NavbarInv({ isOpen, onClose, children, section, addBtn }
         Agregar Platillo
       </button>
 
-      {/* Agregar el componente AgregarModal */}
-      <AgregarModal isOpen={agregarModalOpen} onClose={closeAgregarModal} />
+      <CrearPlatillo isOpen={agregarModalOpen} onClose={closeAgregarModal} />
     </nav>
   );
 }

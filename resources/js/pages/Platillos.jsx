@@ -21,8 +21,8 @@ export default function Platillos() {
     return (
         <Layout>
             <div className="overflow-y-scroll h-screen">
-                <Navbar section="Modulo de platillos" addBtn="Agregar" />
-                <main className="mt-10 md:flex md:flex-wrap md:justify-center gap-8 -mb-28">
+                <Navbar section="Modulo de platillos" addBtn="Agregar Platillo" />
+                <main className="mt-10 md:flex justify-center md:flex-wrap gap-9 -mb-28">
                     {platillo &&
                         platillo.map((platillo) => (
                             <Card
