@@ -43,13 +43,13 @@ class PlatilloController extends Controller
             if ($request->hasFile('imagen_path')) {
                 $imagen = $request->file('imagen_path');
                 $nombreImagen = $request->nombre . '.' . $imagen->getClientOriginalExtension();
-                $rutaDestino = asset('public/platillos/' . $nombreImagen);
-                $imagen->move(public_path('platillos'), $nombreImagen);
+                $rutaDestino = $nombreImagen;
+                $imagen->move(public_path(''), $nombreImagen);
             }
 
 
             if($request->imagen_path == null){
-                $rutaDestino = asset('/public/sushi.png');
+                $rutaDestino = '/public/sushi.png';
             }
     
             $platillo = Platillo::create([
@@ -59,7 +59,7 @@ class PlatilloController extends Controller
                 'imagen_path' => $rutaDestino,
             ]);
     
-            $imagenUrl = asset($rutaDestino);
+            $imagenUrl = $rutaDestino;
     
             return ApiResponse::success("Platillo creado exitosamente", 201, [
                 'platillo' => $platillo,
@@ -105,11 +105,11 @@ class PlatilloController extends Controller
         if ($request->hasFile('imagen_path')) {
             $imagen = $request->file('imagen_path');
             $nombreImagen = $request->nombre . '.' . $imagen->getClientOriginalExtension();
-            $rutaDestino = asset('/public/gohan.png') . $nombreImagen;
-            $imagen->move(public_path('platillos'), $nombreImagen);
+            $rutaDestino = $nombreImagen;
+            $imagen->move(public_path(''), $nombreImagen);
         }
         if($request->imagen_path == null){
-            $rutaDestino = asset('/public/sushi.png');
+            $rutaDestino = '/public/sushi.png';
         }
 
         $platillo->update([
@@ -119,7 +119,7 @@ class PlatilloController extends Controller
             'imagen_path' => $rutaDestino,
         ]);
 
-        $imagenUrl = asset($rutaDestino);
+        $imagenUrl = $rutaDestino;
 
         return ApiResponse::success("Platillo actualizado exitosamente", 200, [
             'platillo' => $platillo,
@@ -142,8 +142,8 @@ class PlatilloController extends Controller
 
             $imagen_path = $platillo->imagen_path;
             
-            if ($imagen_path != asset('sushi.png')) {
-                $imagen_path = str_replace(asset('/public'), '', $imagen_path);
+            if ($imagen_path != ('sushi.png')) {
+                $imagen_path = str_replace(('/public'), '', $imagen_path);
                 if (file_exists(public_path($imagen_path))) {
                     unlink(public_path($imagen_path));
                 }

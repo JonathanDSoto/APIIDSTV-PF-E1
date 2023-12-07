@@ -17,14 +17,15 @@ class PlatilloFactory extends Factory
     public function definition(): array
     {
         $platilloDeSushi = [
-           ['nombre' => 'Sashimi Especial', 'imagen_path' => asset('/public/gohan.png')],
-            ['nombre' => 'Dragon Roll' , 'imagen_path' => asset('/public/tempu.jpg')],
-            ['nombre' => 'Nigiri de Salmón', 'imagen_path' => asset('/public/zana.jpg')],
-            ['nombre' => 'Sushi de Atún', 'imagen_path' => asset('/public/sushi.png')],
-            ['nombre' => 'Sushi de Camarón', 'imagen_path' => asset('/public/sushi.png')],
-            ['nombre' => 'Sushi de Pulpo', 'imagen_path' => asset('/public/sushi.png')],
-            ['nombre' => 'Sushi de Calamar', 'imagen_path' => asset('/public/sushi.png')],
-            ['nombre' => 'Sushi de Pescado Blanco', 'imagen_path' => asset('/public/sushi.png')]
+           ['nombre' => 'Sashimi Especial', 'imagen_path' => 'gohan.png'],
+            ['nombre' => 'Dragon Roll' , 'imagen_path' => 'tempu.jpg'],
+            ['nombre' => 'Nigiri de Salmón', 'imagen_path' => 'zana.jpg'],
+            ['nombre' => 'Sushi de Atún', 'imagen_path' => 'sushi.png'],
+            ['nombre' => 'Sushi de Camarón', 'imagen_path' => 'sushi.png'],
+            ['nombre' => 'Sushi de Pulpo', 'imagen_path' => 'sushi.png'],
+            ['nombre' => 'Sushi de Calamar', 'imagen_path' => 'sushi.png'],
+            ['nombre' => 'Sushi de Pescado Blanco', 'imagen_path' => 'sushi.png'],
+            ['nombre' => 'Sushi de Pescado Negro', 'imagen_path' => 'sushi.png']
         ];
         
         $platilloAleatorio = $this->faker->unique()->randomElement($platilloDeSushi);
