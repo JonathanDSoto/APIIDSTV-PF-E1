@@ -40,8 +40,9 @@ class InventarioController extends Controller
             ]);
             $inventario = Inventario::create(request()->all());
             return ApiResponse::success("Producto creado exitosamente a Inventario", 201, $inventario);
-        } catch(ValidationException $e){
-            return ApiResponse::error('Error al crear el producto de inventario: ' .$e->getMessage(), 422);
+        } catch(ValidationException $errors){
+            $errors = $errors->validator->errors()->toArray();
+            return ApiResponse::error('Error al crear el producto de inventario: ', 422 , $errors);
         }
     }
 
@@ -66,7 +67,7 @@ class InventarioController extends Controller
         try {
             $inventario = Inventario::findOrFail($id);
             $request->validate([
-                'nombre' => 'required|unique:inventarios|string|max:50|min:3' . $request->id,
+                'nombre' => 'required|string|max:50|min:3|unique:inventarios,nombre,' . $inventario->id,
                 'cantidad' => 'required|numeric|gt:0',
                 'cantidad_minima' => 'required|numeric|gt:0',
                 'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento|string|max:100',
@@ -74,8 +75,9 @@ class InventarioController extends Controller
             ]);
             $inventario->update($request->all());
             return ApiResponse::success('Producto de Inventario actualizado exitosamente', 200, $inventario);
-        } catch(ValidationException $e){
-            return ApiResponse::error('Error al crear el producto de inventario: ' .$e->getMessage(), 422);
+        } catch(ValidationException $errors){
+            $errors = $errors->validator->errors()->toArray();
+            return ApiResponse::error('Error al crear el producto de inventario: ' , 422 , $errors);
         }
     }
 

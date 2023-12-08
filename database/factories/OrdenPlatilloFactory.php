@@ -22,7 +22,13 @@ class OrdenPlatilloFactory extends Factory
             'orden_id' => Orden::all()->random()->id,
             'platillo_id' => Platillo::all()->random()->id,
             'cantidad' => $this->faker->numberBetween(1, 5),
-            'precio_platillo' => $this->faker->randomFloat(2, 1, 100),
+            'precio_platillo' => function (array $attributes) {
+                $cantidad = $attributes['cantidad'];
+                $platilloId = $attributes['platillo_id'];
+                $platillo = Platillo::find($platilloId);
+                $precioPlatillo = $platillo->precio * $cantidad;
+                return $precioPlatillo;
+            },
         ];
     }
 }
