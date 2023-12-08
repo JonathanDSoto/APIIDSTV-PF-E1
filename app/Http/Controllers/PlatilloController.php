@@ -34,7 +34,7 @@ class PlatilloController extends Controller
             $request->validate([
                 'nombre' => 'required|unique:platillos|string|max:50|min:3',
                 'descripcion' => 'required|string|max:100|min:10',
-                'precio' => 'required|numeric|min:0',
+                'precio' => 'required|numeric|gt:0',
                 'imagen_path' => 'mimes:jpeg,png,jpg,svg|max:51200',
             ]);
     
@@ -96,7 +96,7 @@ class PlatilloController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:50|min:3' . $request->id,
             'descripcion' => 'required|string|max:100|min:10',
-            'precio' => 'required|numeric|min:0',
+            'precio' => 'required|numeric|gt:0',
             'imagen_path' => 'mimes:jpeg,png,jpg,svg|max:51200|nullable',
         ]);
 
@@ -151,7 +151,7 @@ class PlatilloController extends Controller
             $platillo->delete();
             return ApiResponse::success("Platillo eliminado exitosamente", 200, $platillo);
         } catch (ModelNotFoundException $e) {
-            return ApiResponse::error("Platillo no encontrado: ", 404);
+            return ApiResponse::error("Platillo no encontrado", 404);
         }
     }
 }

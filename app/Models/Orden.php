@@ -13,21 +13,14 @@ class Orden extends Model
 
     protected $fillable = [
         'mesa',
-        'cantidad',
         'tipo_orden',
         'direccion',
-        'total_precio',
         'fecha',     
         'id_cliente',
-        'id_platillo', 
     ];
 
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'id_cliente');
     }
-    public function platillo()
-    {
-        return $this->belongsTo(Platillo::class, 'id_platillo');
-    }    
 }

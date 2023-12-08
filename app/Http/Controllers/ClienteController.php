@@ -53,7 +53,7 @@ class ClienteController extends Controller
             $cliente = Cliente::findOrFail($id);
             return ApiResponse::success("Cliente encontrado", 200, $cliente);
         } catch (Exception $e) {
-            return ApiResponse::error('Cliente no encontrado: ' .$e->getMessage(), 500);
+            return ApiResponse::error('Cliente no encontrado' , 500);
         }
     }
 
@@ -88,7 +88,7 @@ class ClienteController extends Controller
             $cliente->delete();
             return ApiResponse::success("Cliente eliminado exitosamente", 200, $cliente);
         } catch (Exception $e) {
-            return ApiResponse::error('Cliente no encontrado: ' .$e->getMessage(), 404);
+            return ApiResponse::error('Cliente no encontrado' , 404);
         }
     }
 }
