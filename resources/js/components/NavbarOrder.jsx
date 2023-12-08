@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AgregarModal from './Modal';
+import CrearOrden from './CrearOrden';
 
 export default function NavbarInv({ isOpen, onClose, children, section, addBtn }) {
   const [agregarModalOpen, setAgregarModalOpen] = useState(false);
@@ -27,7 +27,7 @@ export default function NavbarInv({ isOpen, onClose, children, section, addBtn }
       </button>
 
       {/* Agregar el componente AgregarModal */}
-      <AgregarModal isOpen={agregarModalOpen} onClose={closeAgregarModal} />
+      <CrearOrden isOpen={agregarModalOpen} onClose={closeAgregarModal} />
     </nav>
   );
 }
