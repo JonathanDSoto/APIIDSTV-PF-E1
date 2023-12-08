@@ -39,8 +39,9 @@ class ClienteController extends Controller
             ]);
             $cliente = Cliente::create($request->all());
             return ApiResponse::success("Cliente creado exitosamente", 201, $cliente);
-        } catch(ValidationException $e){
-            return ApiResponse::error('Error al crear el cliente: ' .$e->getMessage(), 422);
+        } catch(ValidationException $errors){
+            $errors = $errors->validator->errors()->toArray();
+            return ApiResponse::error('Error al crear el cliente: ', 422 , $errors);
         }
     }   
 
@@ -72,8 +73,9 @@ class ClienteController extends Controller
             ]);
             $cliente->update($request->all());
             return ApiResponse::success("Cliente actualizado exitosamente", 200, $cliente);
-        }  catch(ValidationException $e){
-            return ApiResponse::error('Error al actualizar el cliente: ' .$e->getMessage(), 422);
+        }  catch(ValidationException $errors){
+            $errors = $errors->validator->errors()->toArray();
+            return ApiResponse::error('Error al actualizar el cliente: ' , 422 , $errors);
         }
     }
 
