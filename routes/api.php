@@ -32,3 +32,4 @@ Route::apiResource('clientes', ClienteController::class);
 Route::apiResource('platillosInventarios', PlatilloInventarioController::class);
 Route::apiResource('users', UseController::class);
 Route::apiResource('ordenesPlatillos', OrdenPlatillosController::class);
+Route::apiResource('ordenes_vw', OrdenesVwController::class);
