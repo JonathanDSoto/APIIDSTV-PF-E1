@@ -103,10 +103,8 @@ useEffect(() => {
 
     // Submit form btn
     useEffect(() => {
-        setIsSubmitValid(
-            isNameValid && isCantidadValid && isCantidadMinimaValid
-        );
-    }, [isNameValid, isCantidadValid, isCantidadMinimaValid]);
+        setIsSubmitValid(isNameValid && isTipoProductoValid && isUnidadMedidaValid && isCantidadValid && isCantidadMinimaValid);
+    }, [isNameValid, isTipoProductoValid, isUnidadMedidaValid, isCantidadValid, isCantidadMinimaValid]);
 
     // Axios
     const create = async (e) => {
