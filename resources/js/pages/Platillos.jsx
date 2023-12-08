@@ -5,8 +5,12 @@ import axios from "axios";
 import useFetch from "../hooks/useFetch";
 import deleteData from "../hooks/DeleteButton";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function Platillos() {
+
+    const navigate = useNavigate();
+
     const [platillo, setPlatillo] = useState([]);
 
     useEffect(() => {
@@ -24,20 +28,11 @@ export default function Platillos() {
             });
     }, []);
 
-    const deletePlatillo = async (id) => {
-        try {
-            await deleteData("platillos", id);
-            const platillosData = await useFetch("platillos");
+    const deletePlatillo = (id) => {
+        deleteData("http://localhost:8000/api/platillos", id);
+        setPlatillo(platillo.filter((platillo) => platillo.id !== id));
+    }
 
-            setPlatillo(platillosData);
-        } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Algo salio mal",
-            });
-        }
-    };
 
     return (
         <Layout>
@@ -48,7 +43,7 @@ export default function Platillos() {
                 />
                 <main className="mt-10 md:flex justify-center md:flex-wrap gap-9 -mb-28">
                     {platillo.map((platillo) => (
-                    <div className="bg-[#333333] shadow-md max-h-[450px] rounded-2xl mb-2 p-4 flex ">
+                    <div key={platillo.id} className="bg-[#333333] shadow-md max-h-[450px] rounded-2xl mb-2 p-4 flex ">
                         <div className="flex items-center flex-col">
                             <img
                                 src={platillo.imagen_path}
@@ -91,9 +86,12 @@ export default function Platillos() {
                                 >
                                     {platillo.descripcion}
                                 </div>
-                                <div className="flex justify-center text-md font-semibold mt-10">
-                                    <button className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-8 mr-2">
-                                        Editar
+                                <div 
+                                    className="flex justify-center text-md font-semibold mt-10">
+                                    <button 
+                                        onClick={() => navigate(`/platillo/${platillo.id}`)}
+                                        className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-8 mr-2">
+                                            Editar
                                     </button>
 
                                     <button

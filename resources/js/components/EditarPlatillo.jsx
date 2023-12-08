@@ -78,11 +78,10 @@ const EditarPlatillo = ({}) => {
         }));
     };
 
-    
 
     return (
         <Layout>
-            <Navbar section="Modulo de platillos" addBtn="Agregar producto" />
+            <Navbar section="Modulo de platillos" addBtn="Editar Platillo" />
             <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
                 <form
                     onSubmit={update}
@@ -95,7 +94,7 @@ const EditarPlatillo = ({}) => {
                         <span className="text-xl">×</span>
                     </button>
                     <div>
-                        <h2 className="text-center mb-5">Crear Platillo</h2>
+                        <h2 className="text-center mb-5">Editar Platillo</h2>
                         <div>
                             <label
                                 htmlFor="nuevoElemento"

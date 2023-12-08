@@ -19,9 +19,9 @@ const Modal = ({ isOpen, onClose }) => {
                 <div>
                     <h2 className='text-center mb-5'>Orden</h2>
                     <div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona el platillo</label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    <div className="col-span-2 sm:col-span-1">
+                        <label for="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona el platillo</label>
+                        <select id="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
                            
                             <option className='text-black' selected="">Seleccionar</option>
                             <option className='text-black' value="TV">Gohan klip</option>
@@ -31,9 +31,9 @@ const Modal = ({ isOpen, onClose }) => {
                         </select>
                     </div>
 
-                        <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tipo de orden</label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <div className="col-span-2 sm:col-span-1">
+                        <label for="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tipo de orden</label>
+                        <select id="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option className='text-black' selected="">Seleccionar</option>
                             <option className='text-black' value="RS">Restaurante</option>
                             <option className='text-black' value="DM">Servicio a domicilio</option>
