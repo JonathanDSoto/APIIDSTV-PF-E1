@@ -16,7 +16,7 @@ class PlatilloInventarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_platillo' => Platillo::all()->random()->id,
+            'id_platillo' => PlatilloFactory::new(),
             'id_inventario' => InventarioFactory::new(),
             'cantidad' => $this->faker->randomFloat(2, 1, 10),
         ];

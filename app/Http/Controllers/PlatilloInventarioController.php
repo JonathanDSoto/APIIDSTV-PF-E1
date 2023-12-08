@@ -77,7 +77,7 @@ class PlatilloInventarioController extends Controller
             $platilloInventario = PlatilloInventario::with('platillo', 'inventario')->findOrFail($id);
             return ApiResponse::success("PlatilloInventario encontrado", 200, $platilloInventario);
         } catch (Exception $e) {
-            return ApiResponse::error('Error al obtener los datos: ' .$e->getMessage(), 500);
+            return ApiResponse::error('Error al obtener los datos' , 500);
         }
     }
 
@@ -133,7 +133,7 @@ class PlatilloInventarioController extends Controller
             $platilloinventario->delete();
             return ApiResponse::success("PlatilloInventario eliminado exitosamente", 200, $platilloinventario);
         } catch (Exception $e) {
-            return ApiResponse::error('Error al eliminar el platilloinventario: ' . $e->getMessage(), 500);
+            return ApiResponse::error('Error al eliminar el platilloinventario', 500);
         }
     }
 }

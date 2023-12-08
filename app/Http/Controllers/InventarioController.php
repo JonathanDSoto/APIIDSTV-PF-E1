@@ -36,7 +36,7 @@ class InventarioController extends Controller
                 'cantidad' => 'required|numeric|gt:0',
                 'cantidad_minima' => 'required|numeric|gt:0',
                 'tipo' => 'required|in:Pescado,Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento,Crustáceo|string|max:100',
-                'unidad_medida' => 'required|in:Litros,Kilogramos,Gramos|string|max:10|min:5'
+                'unidad_medida' => 'required|in:Litros,Kilogramos|string|max:10|min:5'
             ]);
             $inventario = Inventario::create(request()->all());
             return ApiResponse::success("Producto creado exitosamente a Inventario", 201, $inventario);
@@ -70,7 +70,7 @@ class InventarioController extends Controller
                 'cantidad' => 'required|numeric|gt:0',
                 'cantidad_minima' => 'required|numeric|gt:0',
                 'tipo' => 'required|in:Bebida,Grano,Carne,Fruta,Verdura,Lacteo,Complemento,Condimiento|string|max:100',
-                'unidad_medida' => 'required|in:Litros,Kilogramos,Gramos|string|max:10|min:3'
+                'unidad_medida' => 'required|in:Litros,Kilogramos|string|max:10|min:3'
             ]);
             $inventario->update($request->all());
             return ApiResponse::success('Producto de Inventario actualizado exitosamente', 200, $inventario);

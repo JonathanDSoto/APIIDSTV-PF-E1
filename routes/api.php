@@ -7,6 +7,8 @@ use App\Http\Controllers\PlatilloController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlatilloInventarioController;
 use App\Http\Controllers\UseController;
+use App\Http\Controllers\OrdenPlatillosController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +31,4 @@ Route::apiResource('ordenes', OrdenController::class);
 Route::apiResource('clientes', ClienteController::class);
 Route::apiResource('platillosInventarios', PlatilloInventarioController::class);
 Route::apiResource('users', UseController::class);
+Route::apiResource('ordenesPlatillos', OrdenPlatillosController::class);
