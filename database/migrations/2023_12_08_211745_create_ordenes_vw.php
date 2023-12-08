@@ -9,24 +9,29 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('ordenes_vw', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre_cliente'); // #1. nombre_cliente
-            $table->integer('mesa'); // #2. mesa
-            $table->text('platillos'); // #3. platillos
-            $table->decimal('precio_total', 10, 2); // #4. precio_total
-            $table->string('tipo_orden'); // #5. tipo_orden
-            $table->timestamps();
-        });
+        DB::statement("
+            CREATE VIEW ordenes_vw AS
+            SELECT 
+                clientes.nombre AS nombre_cliente,
+                ordenes.mesa,
+                GROUP_CONCAT(CONCAT(platillos.nombre, '(', orden_platillos.cantidad, ')') ORDER BY platillos.nombre SEPARATOR ', ') AS platillos,
+                SUM(platillos.precio * orden_platillos.cantidad) AS precio_total,
+                ordenes.tipo_orden
+            FROM ordenes
+            JOIN orden_platillos ON ordenes.id = orden_platillos.orden_id
+            JOIN platillos ON orden_platillos.platillo_id = platillos.id
+            JOIN clientes ON ordenes.id_cliente = clientes.id
+            GROUP BY ordenes.id
+        ");
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('ordenes_vw');
+        DB::statement("DROP VIEW IF EXISTS ordenes_vw");
     }
 };

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlatilloInventarioController;
 use App\Http\Controllers\UseController;
 use App\Http\Controllers\OrdenPlatillosController;
+use App\Http\Controllers\OrdenesVwController;
 
 /*
 |--------------------------------------------------------------------------
