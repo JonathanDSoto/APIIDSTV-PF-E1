@@ -7,9 +7,9 @@ import Ordenes from './pages/Ordenes';
 import Inventario from './pages/Inventario';
 import Clientes from './pages/Clientes';
 import Inicio from './pages/Inicio';
-import MakeOrder from './pages/MakeOrder';
 import EditarCliente from './components/EditarCliente';
 import EditarProducto from './components/EditarProducto';
+import EditarPlatillo from './components/EditarPlatillo';
 
 
 export default function App() {
@@ -22,10 +22,9 @@ export default function App() {
 
       <Route path="/" element={<Login/>}/>
       <Route path="/inicio" element={<Inicio/>}/> 
-      <Route path="/makeorder" element={<MakeOrder/>}/>
     
       <Route path="/platillos" element={<Platillos/>}/>
-      <Route path="/platillo/:id"/>
+      <Route path="/platillo/:id" element={<EditarPlatillo/>}/>
 
       <Route path="/ordenes" element={<Ordenes/>}/>
       <Route path="/orden/:id"/>
