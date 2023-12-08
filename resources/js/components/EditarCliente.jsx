@@ -21,6 +21,7 @@ const EditarCliente = ({}) => {
     const [isTelefonoValid, setIsTelefonoValid] = useState(false);
     const [isCorreoValid, setIsCorreoValid] = useState(false);
     const [isSubmitValid, setIsSubmitValid] = useState(false);
+    const [isConsoleError, setIsConsoleError] = useState(false);
 
     //List of regex
     const RegexName = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s-]+$/;
@@ -64,14 +65,15 @@ const EditarCliente = ({}) => {
         await axios.put(`${endpoint}${clienteId}`, { nombre: nombre, telefono: telefono, email: correo });
         navigate("/clientes");
     } catch (error) {
+        setIsConsoleError(true);
         console.error("Error:", error);
 
         // alert
-        Swal.fire({
+        /*Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'Verifique que la entrada sea única y los datos sean correctos.',
-        });
+        });*/
     }
 }
 
@@ -185,6 +187,11 @@ const EditarCliente = ({}) => {
                                  Guardar
                              </button>
                          </div>
+                         {!isConsoleError ? null : (
+                            <div className="text-red-500 text-xs mt-3 mb-2">
+                                ERROR: Compruebe que los datos sean correctos y que teléfono y correos no esten repetidos.
+                            </div>
+                        )}
                      </form>
                  </div>
              </div>
