@@ -24,9 +24,6 @@ export default function Login() {
                                 <h4 className="font-medium">
                                     Cuenta Administrativa
                                 </h4>
-                                <div className="text-slate-500 dark:text-slate-400 text-base">
-                                    Ingresa tu correo electrónico y contraseña
-                                </div>
                             </div>
                             <LoginForm />
                         </div>
