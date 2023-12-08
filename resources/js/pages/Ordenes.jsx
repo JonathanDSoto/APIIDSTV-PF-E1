@@ -2,6 +2,8 @@ import React,{useState, useEffect} from "react";
 import Layout from "../layouts/Layout";
 import NavbarOrder from "../components/NavbarOrder";
 import axios from "axios";
+import deleteData from "../hooks/DeleteButton";
+import Swal from "sweetalert2";
 
 const endpoint = "http://localhost:8000/api/ordenesPlatillos";
 
@@ -15,16 +17,19 @@ export default function Ordenes() {
             .then((response) => {
                 setOrdenes(response.data.data);
             })
-            .catch((error) => {
-                console.log("Salió error:", error);
-            });
     }, []);
+
+    const deleteOrden = (id) => {
+        deleteData("http://localhost:8000/api/ordenes", id);
+        setOrdenes(ordenes.filter((ordenes) => ordenes.id !== id));
+        axios.delete(endpoint + "/" + id);
+    }
 
     
     return (
         <Layout>
             <div className="overflow-y-scroll h-screen">
-                <NavbarOrder section="Ordenes" addBtn="Agregar Orden" />
+                <NavbarOrder section="Módulo de Órdenes" addBtn="Agregar Orden" />
                 <main className="mt-10 md:flex mx-4 justify-center md:flex-wrap gap-9 -mb-28">
                     {ordenes.map((orden) => (
                 <div key={orden.id} className="bg-[#333333] shadow-md max-h-[350px] rounded-2xl mb-2 p-4 flex ">
@@ -97,6 +102,31 @@ export default function Ordenes() {
                                     <button
                                         className="rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-8"
                                         type="button"
+                                        onClick={() => {
+                                            Swal.fire({
+                                                title: "¿Estas seguro?",
+                                                text: "No podras revertir esto",
+                                                icon: "warning",
+                                                showCancelButton: true,
+                                                confirmButtonColor:
+                                                    "#3085d6",
+                                                cancelButtonColor:
+                                                    "#d33",
+                                                confirmButtonText:
+                                                    "Si, eliminar",
+                                                cancelButtonText:
+                                                    "Cancelar",
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    deleteOrden(orden.id);
+                                                    Swal.fire(
+                                                        "Eliminado",
+                                                        "La orden ha sido eliminada",
+                                                        "success"
+                                                    );
+                                                }
+                                            });
+                                        }}
                                     >
                                         Eliminar
                                     </button>

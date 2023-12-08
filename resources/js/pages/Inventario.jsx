@@ -122,7 +122,7 @@ export default function Inventario() {
         <Layout>
             <div className="overflow-y-scroll">
                 <NavbarInv
-                    section="Módulo de inventario"
+                    section="Módulo de Inventario"
                     addBtn="Agregar producto"
                 />
                 <main className="h-screen mt-3 grid grid-cols-1 md:flex md:flex-wrap md:justify-center  -mb-28">

@@ -29,7 +29,7 @@ export default function Clientes() {
         <Layout>
             <div className="overflow-y-scroll">
                 <NavbarClient
-                    section="Modulo de clientes"
+                    section="Módulo de Clientes"
                     addBtn="Agregar producto"
                 />
                 <main className="h-screen mt-3 grid grid-cols-1 md:flex md:flex-wrap md:justify-center  -mb-28">

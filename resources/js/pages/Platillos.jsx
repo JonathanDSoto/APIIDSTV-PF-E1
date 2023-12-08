@@ -7,6 +7,8 @@ import deleteData from "../hooks/DeleteButton";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
+const endpoint = "http://localhost:8000/api/platillos";
+
 export default function Platillos() {
 
     const navigate = useNavigate();
@@ -31,6 +33,7 @@ export default function Platillos() {
     const deletePlatillo = (id) => {
         deleteData("http://localhost:8000/api/platillos", id);
         setPlatillo(platillo.filter((platillo) => platillo.id !== id));
+        axios.delete(endpoint + "/" + id);
     }
 
 
@@ -38,7 +41,7 @@ export default function Platillos() {
         <Layout>
             <div className="overflow-y-scroll h-screen">
                 <Navbar
-                    section="Modulo de platillos"
+                    section="Módulo de Platillos"
                     addBtn="Agregar Platillo"
                 />
                 <main className="mt-10 md:flex justify-center md:flex-wrap gap-9 -mb-28">
