@@ -56,16 +56,15 @@ export default function Inventario() {
         if (modifiedData.some((producto) => producto.unidad_medida === 'Gramos' && producto.cantidad >= 1000)) {
             setMeasureUnitOption('Kilogramos');
         }
-        // Turn g to kg in cantidad minima
+        // Turn g to kg in cantidad min
         if (modifiedData.some((producto) => producto.unidad_medida === 'Gramos' && producto.cantidad_minima >= 1000)) {
             setMeasureUnitOption('Kilogramos');
         }
-        // TODO verify
         // Turn kg to g in cantidad
         if (modifiedData.some((producto) => producto.unidad_medida === 'Kilogramos' && producto.cantidad < 1)) {
             setMeasureUnitOption('Gramos');
         }
-
+        // Turn kg to g in cantidad min
         if (modifiedData.some((producto) => producto.unidad_medida === 'Kilogramos' && producto.cantidad_minima < 1)) {
             setMeasureUnitOption('Gramos');
         }
@@ -191,7 +190,7 @@ export default function Inventario() {
                                     </td>
                                     <td className="px-6 py-4">
                                         {
-                                            producto.cantidad * (measureUnitCant === 'Kilogramos' ? 1000 : 1) <
+                                            producto.cantidad * (measureUnitCant === 'Kilogramos' ? 1000 : 1) <=
                                             producto.cantidad_minima * (measureUnitMin === 'Kilogramos' ? 1000 : 1) ? (
                                                 <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
                                                     Agotado
