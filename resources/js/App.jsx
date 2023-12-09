@@ -10,6 +10,7 @@ import Inicio from './pages/Inicio';
 import EditarCliente from './components/EditarCliente';
 import EditarProducto from './components/EditarProducto';
 import EditarPlatillo from './components/EditarPlatillo';
+import EditarOrden from './components/EditarOrden';
 
 
 export default function App() {
@@ -27,7 +28,7 @@ export default function App() {
       <Route path="/platillo/:id" element={<EditarPlatillo/>}/>
 
       <Route path="/ordenes" element={<Ordenes/>}/>
-      <Route path="/orden/:id"/>
+      <Route path="/orden/:id" element={<EditarOrden/>}/>
 
       <Route path="/inventario" element={<Inventario/>}/>
       <Route path='/producto/:id' element={<EditarProducto/>}/>

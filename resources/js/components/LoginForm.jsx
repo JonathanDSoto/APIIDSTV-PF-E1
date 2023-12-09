@@ -7,6 +7,10 @@ const endpoint = "http://localhost:8000/api/users";
 const currentUserEndpoint = "http://localhost:8000/api/user";
 
 function LoginForm() {
+
+    const email = "admin@gmail.com"
+    const password = "root12345"
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -50,17 +54,18 @@ function LoginForm() {
   
       try {
   
-        const currentUserResponse = await axios.get(currentUserEndpoint);
-  
-        if (currentUserResponse.data.email === formData.email) {
-          history.push("/inicio");
+        if (formData.email === email && formData.password === password) {
+          const response = await axios.get(currentUserEndpoint);
+          const user = response.data.data;
+          localStorage.setItem("user", JSON.stringify(user));
+          window.location.href = "/inicio";
         } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Credenciales Incorrectas',
-            text: 'Por favor, verifica tu correo electrónico y contraseña',
-          });
-        }
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Credenciales incorrectas",
+            });
+            }
       } catch (error) {
         console.log(error);
       }

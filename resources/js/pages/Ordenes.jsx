@@ -1,13 +1,16 @@
 import React,{useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import NavbarOrder from "../components/NavbarOrder";
 import axios from "axios";
 import deleteData from "../hooks/DeleteButton";
 import Swal from "sweetalert2";
 
-const endpoint = "http://localhost:8000/api/ordenesPlatillos";
+const endpoint = "http://localhost:8000/api/ordenes";
 
 export default function Ordenes() {
+
+    const navigate = useNavigate();
 
     const [ordenes, setOrdenes] = useState([]);
 
@@ -37,13 +40,27 @@ export default function Ordenes() {
                             <div className="flex-grow">
                                 <h2
                                     style={{ fontSize: "1.5rem" }}
-                                    className=" text-white font-black"
+                                    className=" text-white font-black text-center"
                                 >
-                                    Martin Castro
+                                    Órden #{orden.id}
                                 </h2>
-                                <div className="lg:flex items-center text-slate-400">
+                                <div className=" text-slate-400 text-center">
                                     <p style={{ fontSize: "1.2rem" }}>
-                                        Domicilio: Calle 1 # 1-1
+                                        {orden.tipo_orden === "domicilio" ? (
+                                            <p>
+                                                <span className="font-bold">
+                                                    Domicilio
+                                                </span>
+                                                : {orden.direccion}
+                                            </p>
+                                        ) : (
+                                            <p>
+                                                <span className="font-bold">
+                                                    Mesa
+                                                </span>
+                                                : {orden.mesa}
+                                            </p>
+                                        )}
                                     </p>
                                 </div>
                                 <div className="overflow-clip">
@@ -88,12 +105,13 @@ export default function Ordenes() {
                                 </div>
                                 <div className="flex justify-end text-yellow-500 text-2xl font-bold">
                                     <p style={{ fontSize: "1.2rem" }}>
-                                        $234.50
+                                        Total: ${orden.total}
                                     </p>
                                 </div>
 
                                 <div className="flex justify-center mt-4 space-x-3 text-md font-semibold">
                                     <button
+                                        onClick = {() => navigate(`/orden/${orden.id}`)}
                                         className="rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-8"
                                     >
                                         Editar

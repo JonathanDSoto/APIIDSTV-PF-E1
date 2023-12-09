@@ -1,99 +1,65 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
+import { useNavigate, useParams } from "react-router-dom";
+import Layout from "../layouts/Layout";
+import NavbarOrder from "../components/NavbarOrder";
 
-const CrearOrden = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+const endpoint = "http://localhost:8000/api/ordenes/";
 
-  const [platillos, setPlatillos] = useState([]);
-  const [tipoOrden, setTipoOrden] = useState("");
-  const [numeroMesa, setNumeroMesa] = useState("");
-  const [direccion, setDireccion] = useState("");
-  const [ordenItems, setOrdenItems] = useState([]);
-  const [cantidad, setCantidad] = useState(1);
-  const [nuevoElemento, setNuevoElemento] = useState(""); // Agregado
-
-  const endpoint = "http://localhost:8000/api/platillos";
-
-  useEffect(() => {
-    axios
-      .get(endpoint)
-      .then((response) => {
-        setPlatillos(response.data.data);
-      })
-      .catch((error) => {
-        console.log("Salió error:", error);
-      });
-  }, []);
-
-  const handleAgregarPlatillo = () => {
-    if (platillos.length > 0 && cantidad > 0 && nuevoElemento !== "") {
-      const platilloSeleccionado = platillos.find(
-        (platillo) => platillo.id === parseInt(nuevoElemento, 10)
-      );
-
-      if (platilloSeleccionado) {
-        const nuevoItem = {
-          platillo: platilloSeleccionado,
-          cantidad: cantidad,
-        };
-
-        setOrdenItems([...ordenItems, nuevoItem]);
-        setNuevoElemento("");
-        setCantidad(1);
-      }
-    }
-  };
-
-  const handleEliminarPlatillo = (index) => {
-    const nuevaOrden = [...ordenItems];
-    nuevaOrden.splice(index, 1);
-    setOrdenItems(nuevaOrden);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const EditarOrden = ({ isOpen, onClose }) => {
+    const navigate = useNavigate();
+    const { id: ordenId } = useParams();
   
-    try {
-      // Realizar la solicitud POST para crear una nueva orden
-      const response = await axios.post("http://localhost:8000/api/ordenes", {
-        tipo_orden: tipoOrden,
-        mesa: numeroMesa,
-        direccion: direccion,
-        platillos: ordenItems,
-      });
-  
-      // Manejar la respuesta del servidor
-      if (response.status === 201) {
-        console.log("Orden creada con éxito:", response.data);
-        
-        // Cerrar el modal (puedes agregar lógica adicional aquí)
-        onClose();
-        
-        // Restablecer el estado del componente
-        setTipoOrden("");
-        setNumeroMesa("");
-        setDireccion("");
-        setOrdenItems([]);
-        setCantidad(1);
-        setNuevoElemento("");
-      } else {
-        console.log("Error al crear la orden:", response.data);
-      }
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Error al crear la orden",
-      });
-    }
-  };
-  
+    const [platillos, setPlatillos] = useState([]);
+    const [tipoOrden, setTipoOrden] = useState("");
+    const [numeroMesa, setNumeroMesa] = useState("");
+    const [direccion, setDireccion] = useState("");
+    const [ordenItems, setOrdenItems] = useState([]);
+    const [cantidad, setCantidad] = useState(1);
+    const [nuevoElemento, setNuevoElemento] = useState("");
+
+    const handleAgregarPlatillo = () => {
+        if (platillos.length > 0 && cantidad > 0 && nuevoElemento !== "") {
+            const platilloSeleccionado = platillos.find(
+            (platillo) => platillo.id === parseInt(nuevoElemento, 10)
+            );
+
+            if (platilloSeleccionado) {
+            const nuevoItem = {
+                platillo: platilloSeleccionado,
+                cantidad: cantidad,
+            };
+
+            setOrdenItems([...ordenItems, nuevoItem]);
+            setNuevoElemento(""); 
+            setCantidad(1); 
+            }
+        }
+    };
+
+    useEffect(() => {
+        axios
+          .get(endpoint + ordenId)
+          .then((response) => {
+            const orden = response.data.data;
+            setTipoOrden(orden.tipo_orden);
+            setNumeroMesa(orden.mesa);
+            setDireccion(orden.direccion);
+          })
+          .catch((error) => {
+            console.log("Salió error:", error);
+          });
+      }, [ordenId]);
 
   return (
+    <Layout>
+             <NavbarOrder
+                    section="Modulo de Órdenes"
+                    addBtn="Agregar producto"
+                />
     <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
-      <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex">
-        <button className="absolute top-0 right-0 p-4" onClick={onClose}>
+      <form  className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex">
+        <button className="absolute top-0 right-0 p-4" onClick={() => navigate("/ordenes")}>
           <span className="text-xl">×</span>
         </button>
         <div>
@@ -205,22 +171,22 @@ const CrearOrden = ({ isOpen, onClose }) => {
             <button
               type="button"
               className="btn rounded-md border hover:bg-red-700 border-red-700 bg-red-500 text-white py-1 px-3 mr-2"
-              onClick={onClose}
+              onClick={() => navigate("/ordenes")}
             >
               Cancelar
             </button>
             <button
               type="submit"
               className="btn rounded-md border hover:bg-green-700 border-green-700 bg-green-500 text-white py-1 px-3 ml-2"
-              onClick={handleSubmit}
             >
               Guardar
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
+    </Layout>
   );
 };
 
-export default CrearOrden;
+export default EditarOrden;

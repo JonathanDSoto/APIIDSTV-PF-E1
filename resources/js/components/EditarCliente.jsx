@@ -67,13 +67,6 @@ const EditarCliente = ({}) => {
     } catch (error) {
         setIsConsoleError(true);
         console.error("Error:", error);
-
-        // alert
-        /*Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Verifique que la entrada sea única y los datos sean correctos.',
-        });*/
     }
 }
 

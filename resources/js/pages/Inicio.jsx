@@ -20,7 +20,7 @@ export default function Inicio() {
             console.log(err);
         })
 
-        axios.get(`${endpoint}/ordenes`)
+        axios.get(`${endpoint}/ordenesPlatillos`)
         .then(res => {
             setTotalOrdenes(res.data.data.length);
         })
