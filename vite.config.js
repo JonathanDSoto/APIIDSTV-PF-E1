@@ -11,7 +11,7 @@ export default defineConfig({
                 'resources/js/App.jsx'
             ],
             build: {
-                outDir: 'public/js',
+                outDir: 'public',
               },
             refresh: true,
         }),
