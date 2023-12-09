@@ -10,8 +10,10 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/App.jsx'
             ],
+            build: {
+                outDir: 'public/js',
+              },
             refresh: true,
         }),
-        
     ],
 });
